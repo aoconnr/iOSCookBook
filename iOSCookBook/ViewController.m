@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "NewRecipeViewController.h"
 
 @interface ViewController ()
 
@@ -14,6 +15,10 @@
 
 @implementation ViewController
 
+-(IBAction)newRecipeButton:(id)sender{
+  NewRecipeViewController *next = [[NewRecipeViewController alloc] initWithNibName:nil bundle:nil];
+  [self presentViewController:next animated:TRUE completion:nil];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

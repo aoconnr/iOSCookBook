@@ -10,4 +10,5 @@
 
 @interface ViewController : UIViewController
 
+-(IBAction)newRecipeButton:(id)sender;
 @end
