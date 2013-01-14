@@ -19,7 +19,7 @@
 UITextField *name, *servings, *prepTime, *cookTime, *ingredInput, *instrInput, *catInput;
 UITextView *ingredList, *instrList, *catList;
 UILabel *ingredLabel, *instrLabel, *catLabel;
-UIButton *addIngredButton, *addInstrButton, *catButton, *saveButton, *addPhotoButton;
+UIButton *addIngredButton, *addInstrButton, *catButton, *saveButton, *addPhotoButton, *undoIngredButton, *undoInstrButton, *undoCatButton;
 
 int instrCounter = 0;
 int yShiftAfterIngredients = 20;
@@ -50,9 +50,21 @@ int yShiftAfterCategories = 20;
   if ([instrInput.text length] > 0) {
     instrCounter++;
     NSString *newInstruction = [[NSString stringWithFormat:@"%i: ",instrCounter] stringByAppendingString: instrInput.text];
+   /* UILabel *newInstructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, (220+yShiftAfterInstructions), 200, 15)];
+    newInstructionLabel.text = [instrList.text stringByAppendingString:newInstruction];
+    newInstructionLabel.font = [UIFont systemFontOfSize:15];
+    NSLog(@"HERE");
+    [self.scroller addSubview:newInstructionLabel];
+    
+    UIButton *timerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [timerButton addTarget:self action:@selector(addIngredient) forControlEvents:UIControlEventTouchDown];
+    [timerButton setTitle:@"Add Timer" forState:UIControlStateNormal];
+    timerButton.frame = CGRectMake(150, (220+yShiftAfterInstructions), 30, 15);
+    [self.scroller addSubview:timerButton]; */
+    
     instrList.text = [[instrList.text stringByAppendingString:newInstruction] stringByAppendingString:@"\n"];
     yShiftAfterInstructions += 15;
-  
+    
     [self updatePositions];
   }
   
@@ -79,7 +91,45 @@ int yShiftAfterCategories = 20;
   [self presentViewController:next animated:TRUE completion:nil];
 }
 
+-(void)undoIngredList{
+  NSArray *splitString = [ingredList.text componentsSeparatedByString:@"\n"];
+  NSString *newString = @"";
+  if ([splitString count] > 1) {
+    for (int i=0; i<([splitString count]-2); i++) {
+      newString = [[newString stringByAppendingString:[splitString objectAtIndex:i]] stringByAppendingString:@"\n"];
+    }
+    ingredList.text = newString;
+    yShiftAfterIngredients -= 15;
+    [self updatePositions];
+  }
+}
 
+-(void)undoInstrList{
+  NSArray *splitString = [instrList.text componentsSeparatedByString:@"\n"];
+  NSString *newString = @"";
+  if ([splitString count] > 1) {
+    for (int i=0; i<([splitString count]-2); i++) {
+      newString = [[newString stringByAppendingString:[splitString objectAtIndex:i]] stringByAppendingString:@"\n"];
+    }
+    instrList.text = newString;
+    instrCounter --;
+    yShiftAfterInstructions -= 15;
+    [self updatePositions];
+  }
+}
+
+-(void)undoCatList{
+  NSArray *splitString = [catList.text componentsSeparatedByString:@"\n"];
+  NSString *newString = @"";
+  if ([splitString count] > 1) {
+    for (int i=0; i<([splitString count]-2); i++) {
+      newString = [[newString stringByAppendingString:[splitString objectAtIndex:i]] stringByAppendingString:@"\n"];
+    }
+    catList.text = newString;
+    yShiftAfterCategories -= 15;
+    [self updatePositions];
+  }
+}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
   [textField resignFirstResponder];
@@ -98,19 +148,22 @@ int yShiftAfterCategories = 20;
 -(void)updatePositions{
   ingredList.frame = CGRectMake(5, 105, 300, yShiftAfterIngredients);
   ingredInput.frame = CGRectMake(5, (140+yShiftAfterIngredients), 120, 30);
-  addIngredButton.frame = CGRectMake(150, (140+yShiftAfterIngredients), 30, 30);;
+  addIngredButton.frame = CGRectMake(150, (140+yShiftAfterIngredients), 30, 30);
+  undoIngredButton.frame = CGRectMake(200, (140+yShiftAfterIngredients), 50, 30);
   instrLabel.frame = CGRectMake(5, (180+yShiftAfterIngredients), 150, 30);
   instrList.frame = CGRectMake(5, (220+yShiftAfterIngredients), 250, yShiftAfterInstructions);
   
   int combinedYShift = yShiftAfterIngredients + yShiftAfterInstructions;
   instrInput.frame = CGRectMake(5, (260+combinedYShift), 120, 30);
   addInstrButton.frame = CGRectMake(150, (260+combinedYShift), 30, 30);
+  undoInstrButton.frame = CGRectMake(200, (260+combinedYShift), 50, 30);
   catLabel.frame = CGRectMake(5, (300+combinedYShift), 150, 30);
   catList.frame = CGRectMake(5, (340+combinedYShift), 250, yShiftAfterCategories);
   
   combinedYShift = combinedYShift + yShiftAfterCategories;
   catInput.frame = CGRectMake(5, (370+combinedYShift), 120, 30);
   catButton.frame = CGRectMake(150, (370+combinedYShift), 30, 30);
+  undoCatButton.frame = CGRectMake(200, (370+combinedYShift), 50, 30);
   addPhotoButton.frame = CGRectMake(5, (410+combinedYShift), 100, 30);
   saveButton.frame = CGRectMake(210, (410+combinedYShift), 100, 30);
   
@@ -149,7 +202,6 @@ int yShiftAfterCategories = 20;
   ingredLabel.text = @"Ingredients";
   [self.scroller addSubview:ingredLabel];
   
-  //TODO: Expand when text added
   ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 105, 300, 30)];
   ingredList.editable = FALSE;
   ingredList.scrollEnabled = FALSE;
@@ -165,6 +217,13 @@ int yShiftAfterCategories = 20;
   [addIngredButton setTitle:@"+" forState:UIControlStateNormal];
   addIngredButton.frame = CGRectMake(150, 140, 30, 30);
   [self.scroller addSubview:addIngredButton];
+  
+  undoIngredButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [undoIngredButton addTarget:self action:@selector(undoIngredList) forControlEvents:UIControlEventTouchDown];
+  [undoIngredButton setTitle:@"Undo" forState:UIControlStateNormal];
+  undoIngredButton.frame = CGRectMake(200, 140, 50, 30);
+  [self.scroller addSubview:undoIngredButton];
+  
   
   instrLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 180, 150, 30)];
   instrLabel.font = [UIFont systemFontOfSize:20];
@@ -188,6 +247,12 @@ int yShiftAfterCategories = 20;
   addInstrButton.frame = CGRectMake(150, 260, 30, 30);
   [self.scroller addSubview:addInstrButton];
   
+  undoInstrButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [undoInstrButton addTarget:self action:@selector(undoInstrList) forControlEvents:UIControlEventTouchDown];
+  [undoInstrButton setTitle:@"Undo" forState:UIControlStateNormal];
+  undoInstrButton.frame = CGRectMake(200, 260, 50, 30);
+  [self.scroller addSubview:undoInstrButton];
+  
   catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 300, 150, 30)];
   catLabel.font = [UIFont systemFontOfSize:20];
   catLabel.text = @"Categories";
@@ -208,6 +273,12 @@ int yShiftAfterCategories = 20;
   [catButton setTitle:@"+" forState:UIControlStateNormal];
   catButton.frame = CGRectMake(150, 370, 30, 30);
   [self.scroller addSubview:catButton];
+  
+  undoCatButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [undoCatButton addTarget:self action:@selector(undoCatList) forControlEvents:UIControlEventTouchDown];
+  [undoCatButton setTitle:@"Undo" forState:UIControlStateNormal];
+  undoCatButton.frame = CGRectMake(200, 370, 50, 30);
+  [self.scroller addSubview:undoCatButton];
   
   addPhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [addPhotoButton addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchDown];
