@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BrowseViewController : UIViewController
+@interface BrowseViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UITableView *menu;
-@property (nonatomic, strong) NSArray *MenuItems;
+@property (nonatomic, strong) IBOutlet UITableView *menu;
+@property (nonatomic, strong) NSArray *menuItems;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "NewRecipeViewController.h"
+#import "BrowseViewController.h"
 //TEMP
 #import "RecipeViewController.h"
 
@@ -29,7 +30,8 @@
 }
 
 -(IBAction)browseButton:(id)sender{
-  
+  BrowseViewController *next = [[BrowseViewController alloc] initWithNibName:nil bundle:nil];
+  [self presentViewController:next animated:TRUE completion:nil];
 }
 
 - (void)viewDidLoad
