@@ -16,7 +16,7 @@
 
 @implementation NewRecipeViewController
 
-UITextField *name, *servings, *prepTime, *cookTime, *ingredInput, *instrInput, *catInput;
+UITextField *name, *servings, *prepTime, *cookTime, *ingredInput, *instrInput, *catInput, *timerInput;
 UITextView *ingredList, *instrList, *catList;
 UILabel *ingredLabel, *instrLabel, *catLabel;
 UIButton *addIngredButton, *addInstrButton, *catButton, *saveButton, *addPhotoButton, *undoIngredButton, *undoInstrButton, *undoCatButton;
@@ -50,6 +50,10 @@ int yShiftAfterCategories = 20;
   if ([instrInput.text length] > 0) {
     instrCounter++;
     NSString *newInstruction = [[NSString stringWithFormat:@"%i: ",instrCounter] stringByAppendingString: instrInput.text];
+    if([timerInput.text length] > 0){
+      newInstruction = [[newInstruction stringByAppendingString:@". Timer:"] stringByAppendingString:timerInput.text];
+    }
+    
    /* UILabel *newInstructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, (220+yShiftAfterInstructions), 200, 15)];
     newInstructionLabel.text = [instrList.text stringByAppendingString:newInstruction];
     newInstructionLabel.font = [UIFont systemFontOfSize:15];
@@ -155,8 +159,9 @@ int yShiftAfterCategories = 20;
   
   int combinedYShift = yShiftAfterIngredients + yShiftAfterInstructions;
   instrInput.frame = CGRectMake(5, (260+combinedYShift), 120, 30);
-  addInstrButton.frame = CGRectMake(150, (260+combinedYShift), 30, 30);
-  undoInstrButton.frame = CGRectMake(200, (260+combinedYShift), 50, 30);
+  timerInput.frame = CGRectMake(130, (260+combinedYShift), 75, 30);
+  addInstrButton.frame = CGRectMake(210, (260+combinedYShift), 30, 30);
+  undoInstrButton.frame = CGRectMake(250, (260+combinedYShift), 50, 30);
   catLabel.frame = CGRectMake(5, (300+combinedYShift), 150, 30);
   catList.frame = CGRectMake(5, (340+combinedYShift), 250, yShiftAfterCategories);
   
@@ -241,16 +246,21 @@ int yShiftAfterCategories = 20;
   instrInput.placeholder = @"Instruction";
   [self.scroller addSubview:instrInput];
   
+  timerInput = [[UITextField alloc] initWithFrame:CGRectMake(130, 260, 75, 30)];
+  [self defaultTextFieldValues:timerInput];
+  timerInput.placeholder = @"minutes";
+  [self.scroller addSubview:timerInput];
+  
   addInstrButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [addInstrButton addTarget:self action:@selector(addInstruction) forControlEvents:UIControlEventTouchDown];
   [addInstrButton setTitle:@"+" forState:UIControlStateNormal];
-  addInstrButton.frame = CGRectMake(150, 260, 30, 30);
+  addInstrButton.frame = CGRectMake(210, 260, 30, 30);
   [self.scroller addSubview:addInstrButton];
   
   undoInstrButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [undoInstrButton addTarget:self action:@selector(undoInstrList) forControlEvents:UIControlEventTouchDown];
   [undoInstrButton setTitle:@"Undo" forState:UIControlStateNormal];
-  undoInstrButton.frame = CGRectMake(200, 260, 50, 30);
+  undoInstrButton.frame = CGRectMake(250, 260, 50, 30);
   [self.scroller addSubview:undoInstrButton];
   
   catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 300, 150, 30)];
