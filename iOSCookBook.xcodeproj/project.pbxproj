@@ -25,6 +25,7 @@
 		4991B3C116A01A9900A005AF /* iOSCookBookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991B3C016A01A9900A005AF /* iOSCookBookTests.m */; };
 		49F3F5A216A46FFC00452861 /* iOSCookBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F3F59F16A46FFC00452861 /* iOSCookBookModel.m */; };
 		49F3F5A316A46FFC00452861 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F3F5A116A46FFC00452861 /* Recipe.m */; };
+		49F3F5FC16A6FA0C00452861 /* DefaultRecipePic.gif in Resources */ = {isa = PBXBuildFile; fileRef = 49F3F5FB16A6FA0C00452861 /* DefaultRecipePic.gif */; };
 		49F7667316A0629900B37461 /* NewRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7667116A0629900B37461 /* NewRecipeViewController.m */; };
 		49F7667416A0629900B37461 /* NewRecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F7667216A0629900B37461 /* NewRecipeViewController.xib */; };
 		49F7669C16A2D9AF00B37461 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7669A16A2D9AF00B37461 /* RecipeViewController.m */; };
@@ -70,6 +71,7 @@
 		49F3F59F16A46FFC00452861 /* iOSCookBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCookBookModel.m; sourceTree = "<group>"; };
 		49F3F5A016A46FFC00452861 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipe.h; sourceTree = "<group>"; };
 		49F3F5A116A46FFC00452861 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipe.m; sourceTree = "<group>"; };
+		49F3F5FB16A6FA0C00452861 /* DefaultRecipePic.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = DefaultRecipePic.gif; sourceTree = "<group>"; };
 		49F7667016A0629900B37461 /* NewRecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRecipeViewController.h; sourceTree = "<group>"; };
 		49F7667116A0629900B37461 /* NewRecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRecipeViewController.m; sourceTree = "<group>"; };
 		49F7667216A0629900B37461 /* NewRecipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRecipeViewController.xib; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				49F3F59F16A46FFC00452861 /* iOSCookBookModel.m */,
 				49F3F5A016A46FFC00452861 /* Recipe.h */,
 				49F3F5A116A46FFC00452861 /* Recipe.m */,
+				49F3F5FB16A6FA0C00452861 /* DefaultRecipePic.gif */,
 			);
 			path = iOSCookBook;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				49F7667416A0629900B37461 /* NewRecipeViewController.xib in Resources */,
 				49F7669D16A2D9AF00B37461 /* RecipeViewController.xib in Resources */,
 				49F766A216A30D7500B37461 /* BrowseViewController.xib in Resources */,
+				49F3F5FC16A6FA0C00452861 /* DefaultRecipePic.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

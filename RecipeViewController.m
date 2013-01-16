@@ -18,6 +18,7 @@
 UITextView *ingredList, *instrList, *catList;
 UILabel *ingredLabel, *instrLabel, *catLabel, *name, *servings, *prepTime, *cookTime;
 UIButton *backButton;
+UIImageView *imageView;
 
 -(IBAction)backPressed{
   ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
@@ -45,51 +46,56 @@ UIButton *backButton;
   name.text = @"Recipe Name";
   [self.scroller addSubview:name];
   
-  servings = [[UILabel alloc] initWithFrame:CGRectMake(5, 40, 97, 30)];
+  imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];
+  imageView.backgroundColor = [UIColor orangeColor];
+  imageView.image = [UIImage imageNamed:@"DefaultRecipePic.gif"];
+  [self.scroller addSubview:imageView];
+  
+  servings = [[UILabel alloc] initWithFrame:CGRectMake(5, 140, 97, 30)];
   servings.text = @"Servings: 0";
   servings.font = [UIFont systemFontOfSize:15];
   [self.scroller addSubview:servings];
   
-  prepTime = [[UILabel alloc] initWithFrame:CGRectMake(110, 40, 97, 30)];
+  prepTime = [[UILabel alloc] initWithFrame:CGRectMake(110, 140, 97, 30)];
   prepTime.font = [UIFont systemFontOfSize:15];
   prepTime.text = @"Prep Time: 0";
   [self.scroller addSubview:prepTime];
   
-  cookTime = [[UILabel alloc] initWithFrame:CGRectMake(210, 40, 97, 30)];
+  cookTime = [[UILabel alloc] initWithFrame:CGRectMake(210, 140, 97, 30)];
   cookTime.font = [UIFont systemFontOfSize:15];
   cookTime.text = @"Cook Time: 0";
   [self.scroller addSubview:cookTime];
   
-  ingredLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 75, 150, 30)];
+  ingredLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 175, 150, 30)];
   ingredLabel.font = [UIFont systemFontOfSize:20];
   ingredLabel.text = @"Ingredients";
   [self.scroller addSubview:ingredLabel];
   
   //TODO: Expand when text added
-  ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 105, 300, 60)];
+  ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 205, 300, 60)];
   ingredList.editable = FALSE;
   ingredList.scrollEnabled = FALSE;
   ingredList.text = @"2 whole rabbits \n4 carrots \n1 litre veg stock";
   [self.scroller addSubview:ingredList];
   
-  instrLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 180, 150, 30)];
+  instrLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 280, 150, 30)];
   instrLabel.font = [UIFont systemFontOfSize:20];
   instrLabel.text = @"Instructions";
   [self.scroller addSubview:instrLabel];
   
   //TODO: add timer button to each line
-  instrList = [[UITextView alloc] initWithFrame:CGRectMake(5, 220, 250, 60)];
+  instrList = [[UITextView alloc] initWithFrame:CGRectMake(5, 320, 250, 60)];
   instrList.editable = FALSE;
   instrList.scrollEnabled = FALSE;
   instrList.text = @"1. we'll need to make this adjust with instruction size\n2. And how we store it\n3. Bill is being a little shit";
   [self.scroller addSubview:instrList];
   
-  catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 300, 150, 30)];
+  catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 400, 150, 30)];
   catLabel.font = [UIFont systemFontOfSize:20];
   catLabel.text = @"Categories";
   [self.scroller addSubview:catLabel];
   
-  catList = [[UITextView alloc] initWithFrame:CGRectMake(5, 340, 250, 30)];
+  catList = [[UITextView alloc] initWithFrame:CGRectMake(5, 440, 250, 30)];
   catList.editable = FALSE;
   catList.scrollEnabled = FALSE;
   catList.text = @"Testing";
@@ -98,10 +104,10 @@ UIButton *backButton;
   backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchDown];
   [backButton setTitle:@"Back" forState:UIControlStateNormal];
-  backButton.frame = CGRectMake(210, 410, 100, 30);
+  backButton.frame = CGRectMake(210, 510, 100, 30);
   [self.scroller addSubview:backButton];
   
-  [self.scroller setContentSize:CGSizeMake(320, 500)];
+  [self.scroller setContentSize:CGSizeMake(320, 550)];
 }
 
 
