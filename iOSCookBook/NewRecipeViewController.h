@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewRecipeViewController : UIViewController
+@interface NewRecipeViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scroller;
 
 

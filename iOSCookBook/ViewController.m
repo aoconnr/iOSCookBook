@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 #import "NewRecipeViewController.h"
+#import "BrowseViewController.h"
+//TEMP
+#import "RecipeViewController.h"
 
 @interface ViewController ()
 
@@ -19,6 +22,18 @@
   NewRecipeViewController *next = [[NewRecipeViewController alloc] initWithNibName:nil bundle:nil];
   [self presentViewController:next animated:TRUE completion:nil];
 }
+
+//Temp directs to a view recipe page
+-(IBAction)favouriteButton:(id)sender{
+  RecipeViewController *next = [[RecipeViewController alloc] initWithNibName:nil bundle:nil];
+  [self presentViewController:next animated:TRUE completion:nil];
+}
+
+-(IBAction)browseButton:(id)sender{
+  BrowseViewController *next = [[BrowseViewController alloc] initWithNibName:nil bundle:nil];
+  [self presentViewController:next animated:TRUE completion:nil];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

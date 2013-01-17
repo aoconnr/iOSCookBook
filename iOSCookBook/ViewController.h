@@ -11,4 +11,6 @@
 @interface ViewController : UIViewController
 
 -(IBAction)newRecipeButton:(id)sender;
+-(IBAction)favouriteButton:(id)sender;
+-(IBAction)browseButton:(id)sender;
 @end
