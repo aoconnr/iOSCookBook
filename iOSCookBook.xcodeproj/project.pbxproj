@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4940265116A859E100A2B400 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4940265016A859E100A2B400 /* AVFoundation.framework */; };
+		4940265416A85B2A00A2B400 /* alarmclock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4940265316A85B2A00A2B400 /* alarmclock.mp3 */; };
 		4991B39016A01A9900A005AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B38F16A01A9900A005AF /* UIKit.framework */; };
 		4991B39216A01A9900A005AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B39116A01A9900A005AF /* Foundation.framework */; };
 		4991B39416A01A9900A005AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B39316A01A9900A005AF /* CoreGraphics.framework */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4940265016A859E100A2B400 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4940265316A85B2A00A2B400 /* alarmclock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarmclock.mp3; sourceTree = "<group>"; };
 		4991B38B16A01A9900A005AF /* iOSCookBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSCookBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4991B38F16A01A9900A005AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4991B39116A01A9900A005AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -88,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4940265116A859E100A2B400 /* AVFoundation.framework in Frameworks */,
 				4991B39016A01A9900A005AF /* UIKit.framework in Frameworks */,
 				4991B39216A01A9900A005AF /* Foundation.framework in Frameworks */,
 				4991B39416A01A9900A005AF /* CoreGraphics.framework in Frameworks */,
@@ -129,6 +134,7 @@
 		4991B38E16A01A9900A005AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4940265016A859E100A2B400 /* AVFoundation.framework */,
 				4991B38F16A01A9900A005AF /* UIKit.framework */,
 				4991B39116A01A9900A005AF /* Foundation.framework */,
 				4991B39316A01A9900A005AF /* CoreGraphics.framework */,
@@ -145,6 +151,7 @@
 				4991B3A716A01A9900A005AF /* ViewController.h */,
 				4991B3A816A01A9900A005AF /* ViewController.m */,
 				4991B3AA16A01A9900A005AF /* ViewController.xib */,
+				4940265316A85B2A00A2B400 /* alarmclock.mp3 */,
 				4991B39616A01A9900A005AF /* Supporting Files */,
 				49F7667016A0629900B37461 /* NewRecipeViewController.h */,
 				49F7667116A0629900B37461 /* NewRecipeViewController.m */,
@@ -277,6 +284,7 @@
 				49F7669D16A2D9AF00B37461 /* RecipeViewController.xib in Resources */,
 				49F766A216A30D7500B37461 /* BrowseViewController.xib in Resources */,
 				49F3F5FC16A6FA0C00452861 /* DefaultRecipePic.gif in Resources */,
+				4940265416A85B2A00A2B400 /* alarmclock.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,7 +9,9 @@
 #import "RecipeViewController.h"
 #import "ViewController.h"
 
-@interface RecipeViewController ()
+@interface RecipeViewController (){
+  AVAudioPlayer *avPlayer;
+}
 
 @end
 
@@ -17,8 +19,12 @@
 
 UITextView *ingredList, *instrList, *catList;
 UILabel *ingredLabel, *instrLabel, *catLabel, *name, *servings, *prepTime, *cookTime;
-UIButton *backButton;
+UIButton *backButton, *timerExample;
 UIImageView *imageView;
+NSTimer *timer;
+
+//test timer delay
+int t= 3;
 
 -(IBAction)backPressed{
   ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
@@ -32,6 +38,27 @@ UIImageView *imageView;
     // Custom initialization
   }
   return self;
+}
+
+-(void)timerStart{
+  timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(tick) userInfo:nil repeats:YES];
+}
+
+-(void)tick{
+  t--;
+  if (t==0) {
+    [avPlayer play];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Example" message:@"Example Timer finished" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+  }
+}
+
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  if (buttonIndex == 0) {
+    [avPlayer stop];
+  }
 }
 
 - (void)viewDidLoad
@@ -87,8 +114,15 @@ UIImageView *imageView;
   instrList = [[UITextView alloc] initWithFrame:CGRectMake(5, 320, 250, 60)];
   instrList.editable = FALSE;
   instrList.scrollEnabled = FALSE;
-  instrList.text = @"1. we'll need to make this adjust with instruction size\n2. And how we store it\n3. Bill is being a little shit";
+  instrList.text = @"1. we'll need to make this adjust with instruction size\n2. And how we store it. Timer:4:00\n3. Bill is being a little shit";
   [self.scroller addSubview:instrList];
+  
+  timerExample = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [timerExample addTarget:self action:@selector(timerStart) forControlEvents:UIControlEventTouchDown];
+  [timerExample setTitle:@"Timer" forState:UIControlStateNormal];
+  [timerExample setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  timerExample.frame = CGRectMake(220, 320, 80, 15);
+  [self.scroller addSubview:timerExample];
   
   catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 400, 150, 30)];
   catLabel.font = [UIFont systemFontOfSize:20];
@@ -108,6 +142,19 @@ UIImageView *imageView;
   [self.scroller addSubview:backButton];
   
   [self.scroller setContentSize:CGSizeMake(320, 550)];
+  
+  
+  
+  
+  
+  NSString *stringPath = [[NSBundle mainBundle] pathForResource:@"alarmclock" ofType:@"mp3"];
+  NSURL *url = [NSURL fileURLWithPath:stringPath];
+  
+  NSError *error;
+  
+  avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+  [avPlayer setNumberOfLoops:2];
+  [avPlayer setVolume:1.0];
 }
 
 

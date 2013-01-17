@@ -89,8 +89,13 @@ int yShiftAfterCategories = 20;
 
 //brings up options to add image from album
 - (IBAction)addPhoto{
+  
   UIImagePickerController *picker =  [[UIImagePickerController alloc] init] ;
 	picker.delegate = self;
+  
+  /*if((UIButton *) sender == addPhotoButton) {
+    NSLog(@"phototottototo");
+  } */
   picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
   
   [self presentViewController:picker animated:TRUE completion:nil];
