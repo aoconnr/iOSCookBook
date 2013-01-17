@@ -10,11 +10,58 @@
 
 @implementation Recipe
 
-@synthesize name, rId, category, cookTime, photo, prepTime, quantity, favourite, rating;
-
+@synthesize name, rId, categories, cookTime, photo, prepTime, quantity, favourite, rating, ingredients, instructions;
 
 -(id)init{
     self = [super init];
+    if (self) {
+        name = @"";
+        cookTime = 0;
+        photo = @"";
+        prepTime = 0;
+        quantity = 0;
+        favourite = false;
+        rating = 0;
+        ingredients = [NSMutableArray new];
+        instructions = [NSMutableArray new];
+        categories = [NSMutableArray new];
+        
+    }
+    return self;
+}
+
+-(id)initWithrId:(int) rid name:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(NSString *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
+    self = [super init];
+    if (self){
+        rId = rid;
+        name = n;
+        categories = c;
+        quantity = q;
+        photo = p;
+        favourite = f;
+        rating = r;
+        prepTime = prep;
+        cookTime = cook;
+        instructions = ins;
+        ingredients = ing;
+    }
+    return self;
+}
+-(id)initWithRId:(NSInteger)r{
+    self = [super init];
+    if (self) {
+        rId= r;
+        name = @"";
+        cookTime = 0;
+        photo = @"";
+        prepTime = 0;
+        quantity = 0;
+        favourite = false;
+        rating = 0;
+        ingredients = [NSMutableArray new];
+        instructions = [NSMutableArray new];
+        categories = [NSMutableArray new];
+    }
     return self;
 }
 @end
