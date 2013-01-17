@@ -22,7 +22,6 @@
 -(Recipe*)getRecipe:(NSInteger)n;
 -(void)addRecipe:(Recipe*)r;
 
--(NSMutableArray*)getRecipes;
 -(NSMutableArray*)getFavourites;
 -(NSMutableArray*)getCategories;
 -(NSMutableArray*)getRecipesByCategory:(NSString*)s;

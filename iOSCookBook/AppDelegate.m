@@ -16,7 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self testModel];
+    //[self testModel];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -63,9 +63,10 @@
     
     NSMutableArray *t = [model getRecipesByCategory:@"cat"];
     for (NSArray *t1 in t){
-        //NSLog(@"item is %@", t1[0]);
+        NSLog(@"item is %@", t1[0]);
     }
-    //r = [model getRecipe:1];
+    r = [model getRecipe:1];
+    [model deleteRecipe:9];
     
     NSLog(@"Done");
     
