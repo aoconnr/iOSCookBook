@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
 #import "Recipe.h"
-
+#import "ingredient.h"
+#import "instruction.h"
 
 @interface iOSCookBookModel : NSObject
 
@@ -20,9 +21,12 @@
 -(id)init;
 -(Recipe*)getRecipe:(NSInteger)n;
 -(void)addRecipe:(Recipe*)r;
--(NSArray*)getRecipes;
--(NSArray*)getFavourites;
--(NSArray*)getCatergories;
--(NSArray*)getRecipesByCategory:(NSString*)s;
+
+-(NSMutableArray*)getRecipes;
+-(NSMutableArray*)getFavourites;
+-(NSMutableArray*)getCategories;
+-(NSMutableArray*)getRecipesByCategory:(NSString*)s;
+-(void)addPhoto:(NSString*)photo toRecipe:(int)r;
+-(void)deleteRecipe:(int)r;
 
 @end

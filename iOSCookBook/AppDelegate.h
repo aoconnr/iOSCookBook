@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ingredient.h"
+#import "instruction.h"
 
 @class ViewController;
 
