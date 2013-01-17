@@ -9,19 +9,68 @@
 #import "AppDelegate.h"
 
 #import "ViewController.h"
+#import "Recipe.h"
+#import "iOSCookBookModel.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self testModel];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
   self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
   self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
+    
+
     return YES;
 }
 
+-(void)testModel{
+    iOSCookBookModel *model = [[iOSCookBookModel alloc] init];
+    
+    ingredient *i = [[ingredient alloc] initWithIngredient:@"ingredient 1" order:1];
+    ingredient *i2 = [[ingredient alloc] initWithIngredient:@"ingredient 2" order:2];
+    NSMutableArray *ingredients = [NSMutableArray new ];
+    [ingredients addObject:i];
+    [ingredients addObject:i2];
+    
+    instruction *x = [[instruction alloc] initWithInstruction:@"instruction 1" order:1];
+    instruction *x2 = [[instruction alloc] initWithInstruction:@"instruction 2" order:2];
+    NSMutableArray *instructions = [NSMutableArray new ];
+    [instructions addObject:x];
+    [instructions addObject:x2];
+    
+    NSMutableArray *categories = [NSMutableArray new];
+    [categories addObject:@"cat"];
+    [categories addObject:@"fdsafdsaf"];
+    
+    Recipe *r = [[Recipe alloc] init];
+    r.name = @"name2";
+    r.cookTime = 50;
+    r.prepTime = 60;
+    r.favourite = 0;
+    r.photo = @"photo";
+    r.quantity = 2;
+    r.rating = 5;
+    r.categories = categories;
+    r.ingredients = ingredients;
+    r.instructions = instructions;
+    
+    [model addRecipe:r];
+    
+    NSMutableArray *t = [model getRecipesByCategory:@"cat"];
+    for (NSArray *t1 in t){
+        //NSLog(@"item is %@", t1[0]);
+    }
+    //r = [model getRecipe:1];
+    
+    NSLog(@"Done");
+    
+    
+}
 - (void)applicationWillResignActive:(UIApplication *)application
 {
   // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

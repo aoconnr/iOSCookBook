@@ -13,7 +13,6 @@
 		4991B39216A01A9900A005AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B39116A01A9900A005AF /* Foundation.framework */; };
 		4991B39416A01A9900A005AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B39316A01A9900A005AF /* CoreGraphics.framework */; };
 		4991B39A16A01A9900A005AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4991B39816A01A9900A005AF /* InfoPlist.strings */; };
-		4991B39C16A01A9900A005AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991B39B16A01A9900A005AF /* main.m */; };
 		4991B3A016A01A9900A005AF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4991B39F16A01A9900A005AF /* AppDelegate.m */; };
 		4991B3A216A01A9900A005AF /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4991B3A116A01A9900A005AF /* Default.png */; };
 		4991B3A416A01A9900A005AF /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4991B3A316A01A9900A005AF /* Default@2x.png */; };
@@ -30,6 +29,13 @@
 		49F3F5FC16A6FA0C00452861 /* DefaultRecipePic.gif in Resources */ = {isa = PBXBuildFile; fileRef = 49F3F5FB16A6FA0C00452861 /* DefaultRecipePic.gif */; };
 		49F7667316A0629900B37461 /* NewRecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7667116A0629900B37461 /* NewRecipeViewController.m */; };
 		49F7667416A0629900B37461 /* NewRecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F7667216A0629900B37461 /* NewRecipeViewController.xib */; };
+		E0CBEBCD16A37111003A67F5 /* cookbook.sql in Resources */ = {isa = PBXBuildFile; fileRef = E0CBEBCC16A37111003A67F5 /* cookbook.sql */; };
+		E0CBEBD316A37126003A67F5 /* iOSCookBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */; };
+		E0CBEBD416A37126003A67F5 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD216A37126003A67F5 /* Recipe.m */; };
+		E0CBEBD616A371AE003A67F5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E0CBEBD516A371AE003A67F5 /* libsqlite3.dylib */; };
+		E0E51D0316A5FA5C0014D72B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E51D0216A5FA5C0014D72B /* main.m */; };
+		E0E51D0616A5FDB10014D72B /* instruction.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E51D0516A5FDB10014D72B /* instruction.m */; };
+		E0E51D0916A5FDC10014D72B /* ingredient.m in Sources */ = {isa = PBXBuildFile; fileRef = E0E51D0816A5FDC10014D72B /* ingredient.m */; };
 		49F7669C16A2D9AF00B37461 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7669A16A2D9AF00B37461 /* RecipeViewController.m */; };
 		49F7669D16A2D9AF00B37461 /* RecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F7669B16A2D9AF00B37461 /* RecipeViewController.xib */; };
 		49F766A116A30D7500B37461 /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7669F16A30D7400B37461 /* BrowseViewController.m */; };
@@ -55,7 +61,6 @@
 		4991B39316A01A9900A005AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		4991B39716A01A9900A005AF /* iOSCookBook-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSCookBook-Info.plist"; sourceTree = "<group>"; };
 		4991B39916A01A9900A005AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		4991B39B16A01A9900A005AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4991B39D16A01A9900A005AF /* iOSCookBook-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSCookBook-Prefix.pch"; sourceTree = "<group>"; };
 		4991B39E16A01A9900A005AF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4991B39F16A01A9900A005AF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -79,6 +84,17 @@
 		49F7667016A0629900B37461 /* NewRecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewRecipeViewController.h; sourceTree = "<group>"; };
 		49F7667116A0629900B37461 /* NewRecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewRecipeViewController.m; sourceTree = "<group>"; };
 		49F7667216A0629900B37461 /* NewRecipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewRecipeViewController.xib; sourceTree = "<group>"; };
+		E0CBEBCC16A37111003A67F5 /* cookbook.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookbook.sql; sourceTree = "<group>"; };
+		E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCookBookModel.h; sourceTree = "<group>"; };
+		E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCookBookModel.m; sourceTree = "<group>"; };
+		E0CBEBD116A37126003A67F5 /* Recipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Recipe.h; sourceTree = "<group>"; };
+		E0CBEBD216A37126003A67F5 /* Recipe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Recipe.m; sourceTree = "<group>"; };
+		E0CBEBD516A371AE003A67F5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E0E51D0216A5FA5C0014D72B /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E0E51D0416A5FDB10014D72B /* instruction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = instruction.h; sourceTree = "<group>"; };
+		E0E51D0516A5FDB10014D72B /* instruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = instruction.m; sourceTree = "<group>"; };
+		E0E51D0716A5FDC10014D72B /* ingredient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ingredient.h; sourceTree = "<group>"; };
+		E0E51D0816A5FDC10014D72B /* ingredient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ingredient.m; sourceTree = "<group>"; };
 		49F7669916A2D9AF00B37461 /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeViewController.h; path = ../RecipeViewController.h; sourceTree = "<group>"; };
 		49F7669A16A2D9AF00B37461 /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeViewController.m; path = ../RecipeViewController.m; sourceTree = "<group>"; };
 		49F7669B16A2D9AF00B37461 /* RecipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecipeViewController.xib; path = ../RecipeViewController.xib; sourceTree = "<group>"; };
@@ -92,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0CBEBD616A371AE003A67F5 /* libsqlite3.dylib in Frameworks */,
 				4940265116A859E100A2B400 /* AVFoundation.framework in Frameworks */,
 				4991B39016A01A9900A005AF /* UIKit.framework in Frameworks */,
 				4991B39216A01A9900A005AF /* Foundation.framework in Frameworks */,
@@ -115,6 +132,7 @@
 		4991B38016A01A9900A005AF = {
 			isa = PBXGroup;
 			children = (
+				E0CBEBD516A371AE003A67F5 /* libsqlite3.dylib */,
 				4991B39516A01A9900A005AF /* iOSCookBook */,
 				4991B3B916A01A9900A005AF /* iOSCookBookTests */,
 				4991B38E16A01A9900A005AF /* Frameworks */,
@@ -150,7 +168,16 @@
 				4991B39F16A01A9900A005AF /* AppDelegate.m */,
 				4991B3A716A01A9900A005AF /* ViewController.h */,
 				4991B3A816A01A9900A005AF /* ViewController.m */,
+				E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */,
+				E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */,
+				E0CBEBD116A37126003A67F5 /* Recipe.h */,
+				E0CBEBD216A37126003A67F5 /* Recipe.m */,
+				E0E51D0416A5FDB10014D72B /* instruction.h */,
+				E0E51D0516A5FDB10014D72B /* instruction.m */,
+				E0E51D0716A5FDC10014D72B /* ingredient.h */,
+				E0E51D0816A5FDC10014D72B /* ingredient.m */,
 				4991B3AA16A01A9900A005AF /* ViewController.xib */,
+				E0E51D0216A5FA5C0014D72B /* main.m */,
 				4940265316A85B2A00A2B400 /* alarmclock.mp3 */,
 				4991B39616A01A9900A005AF /* Supporting Files */,
 				49F7667016A0629900B37461 /* NewRecipeViewController.h */,
@@ -174,9 +201,9 @@
 		4991B39616A01A9900A005AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0CBEBCC16A37111003A67F5 /* cookbook.sql */,
 				4991B39716A01A9900A005AF /* iOSCookBook-Info.plist */,
 				4991B39816A01A9900A005AF /* InfoPlist.strings */,
-				4991B39B16A01A9900A005AF /* main.m */,
 				4991B39D16A01A9900A005AF /* iOSCookBook-Prefix.pch */,
 				4991B3A116A01A9900A005AF /* Default.png */,
 				4991B3A316A01A9900A005AF /* Default@2x.png */,
@@ -281,6 +308,7 @@
 				4991B3A616A01A9900A005AF /* Default-568h@2x.png in Resources */,
 				4991B3AC16A01A9900A005AF /* ViewController.xib in Resources */,
 				49F7667416A0629900B37461 /* NewRecipeViewController.xib in Resources */,
+				E0CBEBCD16A37111003A67F5 /* cookbook.sql in Resources */,
 				49F7669D16A2D9AF00B37461 /* RecipeViewController.xib in Resources */,
 				49F766A216A30D7500B37461 /* BrowseViewController.xib in Resources */,
 				49F3F5FC16A6FA0C00452861 /* DefaultRecipePic.gif in Resources */,
@@ -319,10 +347,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4991B39C16A01A9900A005AF /* main.m in Sources */,
 				4991B3A016A01A9900A005AF /* AppDelegate.m in Sources */,
 				4991B3A916A01A9900A005AF /* ViewController.m in Sources */,
 				49F7667316A0629900B37461 /* NewRecipeViewController.m in Sources */,
+				E0CBEBD316A37126003A67F5 /* iOSCookBookModel.m in Sources */,
+				E0CBEBD416A37126003A67F5 /* Recipe.m in Sources */,
+				E0E51D0316A5FA5C0014D72B /* main.m in Sources */,
+				E0E51D0616A5FDB10014D72B /* instruction.m in Sources */,
+				E0E51D0916A5FDC10014D72B /* ingredient.m in Sources */,
 				49F7669C16A2D9AF00B37461 /* RecipeViewController.m in Sources */,
 				49F766A116A30D7500B37461 /* BrowseViewController.m in Sources */,
 				49F3F5A216A46FFC00452861 /* iOSCookBookModel.m in Sources */,
