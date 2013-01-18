@@ -44,6 +44,7 @@
         int row;
         if (sqlite3_prepare_v2(database, addsqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
         {
+            
             sqlite3_bind_text(compiledStatement, 1, [r.name UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_int(compiledStatement, 2, r.quantity);
             sqlite3_bind_text(compiledStatement, 3, [r.photo UTF8String], -1, SQLITE_TRANSIENT);
@@ -55,6 +56,7 @@
             sqlite3_reset(compiledStatement);
             //get r_id for the recipe
             row = sqlite3_last_insert_rowid(database);
+            NSLog(@"Row is %i", row);
         }
         
         //add to the ingredient table
@@ -76,7 +78,7 @@
 
         //add to the instruction table
         sqlite3_clear_bindings(compiledStatement);
-        addsqlStatement = "INSERT INTO instructions (instruction, ordering, r_id) VALUES (?,?,?)";
+        addsqlStatement = "INSERT INTO instructions (instruction, ordering, r_id, timer) VALUES (?,?,?,?)";
         if (sqlite3_prepare_v2(database, addsqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             
             for (instruction *i in r.instructions){
@@ -86,6 +88,9 @@
                 sqlite3_bind_int(compiledStatement, 2, i.order);
                 //add r_id
                 sqlite3_bind_int(compiledStatement, 3, row);
+                //add timer
+                sqlite3_bind_int(compiledStatement, 4, i.timer);
+
                 sqlite3_step(compiledStatement);
                 sqlite3_reset(compiledStatement);
             }
@@ -135,14 +140,15 @@
         sqlite3_finalize(compiledStatement);
         
         //get instructions
-        sqlStatement = "SELECT instruction, ordering FROM instructions WHERE r_id = ? ORDER BY ordering";
+        sqlStatement = "SELECT instruction, ordering, timer FROM instructions WHERE r_id = ? ORDER BY ordering";
         if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             sqlite3_bind_int(compiledStatement, 1, n);
             while (sqlite3_step(compiledStatement) == SQLITE_ROW){
                 
                 NSString *i = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
                 int o = sqlite3_column_int(compiledStatement, 1);
-                instruction *ins = [[instruction alloc] initWithInstruction:i order:o];
+                int t = sqlite3_column_int(compiledStatement, 2);
+                instruction *ins = [[instruction alloc] initWithInstruction:i order:o timer:t];
                 [instructions addObject:ins];
             }
         }
@@ -337,5 +343,11 @@
     sqlite3_close(database);
 }
 
-
+-(NSString*)secondsToTimeString:(int)s{
+    int secs = s % 60;
+    int mins = s/60;
+    int hours = mins/60;
+    mins = mins%60;
+    return[NSString stringWithFormat:@"%02i:%02i:%02i", hours, mins, secs];
+}
 @end

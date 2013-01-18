@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "Recipe.h"
 @interface RecipeViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIScrollView *scroller;
+@property (strong, nonatomic) Recipe *recipe;
 @end

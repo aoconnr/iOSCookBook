@@ -31,6 +31,7 @@
 		49F7669D16A2D9AF00B37461 /* RecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F7669B16A2D9AF00B37461 /* RecipeViewController.xib */; };
 		49F766A116A30D7500B37461 /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7669F16A30D7400B37461 /* BrowseViewController.m */; };
 		49F766A216A30D7500B37461 /* BrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F766A016A30D7400B37461 /* BrowseViewController.xib */; };
+		E0B484E716A980370000693B /* timer.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B484E616A980370000693B /* timer.m */; };
 		E0CBEBCD16A37111003A67F5 /* cookbook.sql in Resources */ = {isa = PBXBuildFile; fileRef = E0CBEBCC16A37111003A67F5 /* cookbook.sql */; };
 		E0CBEBD316A37126003A67F5 /* iOSCookBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */; };
 		E0CBEBD416A37126003A67F5 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD216A37126003A67F5 /* Recipe.m */; };
@@ -84,6 +85,8 @@
 		49F7669E16A30D7400B37461 /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseViewController.h; sourceTree = "<group>"; };
 		49F7669F16A30D7400B37461 /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseViewController.m; sourceTree = "<group>"; };
 		49F766A016A30D7400B37461 /* BrowseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseViewController.xib; sourceTree = "<group>"; };
+		E0B484E516A980370000693B /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
+		E0B484E616A980370000693B /* timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timer.m; sourceTree = "<group>"; };
 		E0CBEBCC16A37111003A67F5 /* cookbook.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookbook.sql; sourceTree = "<group>"; };
 		E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCookBookModel.h; sourceTree = "<group>"; };
 		E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCookBookModel.m; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 				E0E51D0516A5FDB10014D72B /* instruction.m */,
 				E0E51D0716A5FDC10014D72B /* ingredient.h */,
 				E0E51D0816A5FDC10014D72B /* ingredient.m */,
+				E0B484E516A980370000693B /* timer.h */,
+				E0B484E616A980370000693B /* timer.m */,
 				E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */,
 				E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */,
 				49F7667016A0629900B37461 /* NewRecipeViewController.h */,
@@ -347,6 +352,7 @@
 				E0E51D0916A5FDC10014D72B /* ingredient.m in Sources */,
 				49F7669C16A2D9AF00B37461 /* RecipeViewController.m in Sources */,
 				49F766A116A30D7500B37461 /* BrowseViewController.m in Sources */,
+				E0B484E716A980370000693B /* timer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
