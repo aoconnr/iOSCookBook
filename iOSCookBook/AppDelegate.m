@@ -37,8 +37,8 @@
     [ingredients addObject:i];
     [ingredients addObject:i2];
     
-    instruction *x = [[instruction alloc] initWithInstruction:@"instruction 1" order:1];
-    instruction *x2 = [[instruction alloc] initWithInstruction:@"instruction 2" order:2];
+    instruction *x = [[instruction alloc] initWithInstruction:@"instruction 1" order:1 timer:5];
+    instruction *x2 = [[instruction alloc] initWithInstruction:@"instruction 2" order:2 timer:NULL];
     NSMutableArray *instructions = [NSMutableArray new ];
     [instructions addObject:x];
     [instructions addObject:x2];

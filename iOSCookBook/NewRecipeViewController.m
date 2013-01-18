@@ -68,7 +68,7 @@ int yShiftAfterCategories = 20;
     NSString *newInstruction = [[NSString stringWithFormat:@"%i: ",instrCounter] stringByAppendingString: instrInput.text];
     if([timerInput.text length] > 0){
       newInstruction = [[newInstruction stringByAppendingString:@". Timer:"] stringByAppendingString:timerInput.text];
-        instruction *i = [[instruction alloc] initWithInstruction:instrInput.text order:instrCounter];
+        instruction *i = [[instruction alloc] initWithInstruction:instrInput.text order:instrCounter timer:timerInput.text];
         [instructions addObject:i];
     }
     
