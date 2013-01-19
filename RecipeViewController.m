@@ -72,8 +72,7 @@ int t= 3;
   
   
   name = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 110, 30)];
-//  name.text = @"Recipe Name";
-  name.text = selectedData;
+  name.text = [NSString stringWithFormat:@"%@",recipe.name];
   [self.scroller addSubview:name];
   
   imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];

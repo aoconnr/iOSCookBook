@@ -94,6 +94,8 @@
 		49F9B7DC16AAA9720067B7FB /* BrowseFavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseFavouritesViewController.h; sourceTree = "<group>"; };
 		49F9B7DD16AAA9720067B7FB /* BrowseFavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseFavouritesViewController.m; sourceTree = "<group>"; };
 		49F9B7DE16AAA9720067B7FB /* BrowseFavouritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseFavouritesViewController.xib; sourceTree = "<group>"; };
+		E0B484E516A980370000693B /* timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = timer.h; sourceTree = "<group>"; };
+		E0B484E616A980370000693B /* timer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = timer.m; sourceTree = "<group>"; };
 		E0CBEBCC16A37111003A67F5 /* cookbook.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookbook.sql; sourceTree = "<group>"; };
 		E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCookBookModel.h; sourceTree = "<group>"; };
 		E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCookBookModel.m; sourceTree = "<group>"; };
@@ -186,6 +188,10 @@
 				E0E51D0216A5FA5C0014D72B /* main.m */,
 				4940265316A85B2A00A2B400 /* alarmclock.mp3 */,
 				4991B39616A01A9900A005AF /* Supporting Files */,
+				E0B484E516A980370000693B /* timer.h */,
+				E0B484E616A980370000693B /* timer.m */,
+				E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */,
+				E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */,
 				49F7667016A0629900B37461 /* NewRecipeViewController.h */,
 				49F7667116A0629900B37461 /* NewRecipeViewController.m */,
 				49F7667216A0629900B37461 /* NewRecipeViewController.xib */,
@@ -369,6 +375,8 @@
 				49F9B7D516A9CFBB0067B7FB /* BrowseCategoriesViewController.m in Sources */,
 				49F9B7DA16A9FE980067B7FB /* BrowseRecipesViewController.m in Sources */,
 				49F9B7DF16AAA9720067B7FB /* BrowseFavouritesViewController.m in Sources */,
+				49F766A116A30D7500B37461 /* BrowseViewController.m in Sources */,
+				E0B484E716A980370000693B /* timer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

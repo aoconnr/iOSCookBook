@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "Recipe.h"
 @interface RecipeViewController : UIViewController{
   NSString *selectedData;
 }
-
 @property (nonatomic, readwrite, copy) NSString *selectedData;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroller;
 @property (strong, nonatomic) Recipe *recipe;
