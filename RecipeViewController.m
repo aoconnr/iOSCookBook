@@ -16,26 +16,24 @@
 @end
 
 @implementation RecipeViewController
+@synthesize selectedData;
 
 UITextView *ingredList, *instrList, *catList;
 UILabel *ingredLabel, *instrLabel, *catLabel, *name, *servings, *prepTime, *cookTime;
-UIButton *backButton, *timerExample;
+UIButton *timerExample;
 UIImageView *imageView;
 NSTimer *timer;
 
 //test timer delay
 int t= 3;
 
--(IBAction)backPressed{
-  ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
-  [self presentViewController:next animated:TRUE completion:nil];
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
   self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
   if (self) {
     // Custom initialization
+    
+    self.title = @"Recipe";
   }
   return self;
 }
@@ -70,7 +68,8 @@ int t= 3;
   
   
   name = [[UILabel alloc] initWithFrame:CGRectMake(100, 5, 110, 30)];
-  name.text = @"Recipe Name";
+//  name.text = @"Recipe Name";
+  name.text = selectedData;
   [self.scroller addSubview:name];
   
   imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];
@@ -135,16 +134,7 @@ int t= 3;
   catList.text = @"Testing";
   [self.scroller addSubview:catList];
   
-  backButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  [backButton addTarget:self action:@selector(backPressed) forControlEvents:UIControlEventTouchDown];
-  [backButton setTitle:@"Back" forState:UIControlStateNormal];
-  backButton.frame = CGRectMake(210, 510, 100, 30);
-  [self.scroller addSubview:backButton];
-  
   [self.scroller setContentSize:CGSizeMake(320, 550)];
-  
-  
-  
   
   
   NSString *stringPath = [[NSBundle mainBundle] pathForResource:@"alarmclock" ofType:@"mp3"];

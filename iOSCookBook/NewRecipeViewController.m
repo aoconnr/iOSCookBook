@@ -56,19 +56,7 @@ int yShiftAfterCategories = 20;
     if([timerInput.text length] > 0){
       newInstruction = [[newInstruction stringByAppendingString:@". Timer:"] stringByAppendingString:timerInput.text];
     }
-    
-   /* UILabel *newInstructionLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, (220+yShiftAfterInstructions), 200, 15)];
-    newInstructionLabel.text = [instrList.text stringByAppendingString:newInstruction];
-    newInstructionLabel.font = [UIFont systemFontOfSize:15];
-    NSLog(@"HERE");
-    [self.scroller addSubview:newInstructionLabel];
-    
-    UIButton *timerButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [timerButton addTarget:self action:@selector(addIngredient) forControlEvents:UIControlEventTouchDown];
-    [timerButton setTitle:@"Add Timer" forState:UIControlStateNormal];
-    timerButton.frame = CGRectMake(150, (220+yShiftAfterInstructions), 30, 15);
-    [self.scroller addSubview:timerButton]; */
-    
+
     instrList.text = [[instrList.text stringByAppendingString:newInstruction] stringByAppendingString:@"\n"];
     yShiftAfterInstructions += 15;
     
@@ -92,10 +80,6 @@ int yShiftAfterCategories = 20;
   
   UIImagePickerController *picker =  [[UIImagePickerController alloc] init] ;
 	picker.delegate = self;
-  
-  /*if((UIButton *) sender == addPhotoButton) {
-    NSLog(@"phototottototo");
-  } */
   picker.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
   
   [self presentViewController:picker animated:TRUE completion:nil];
@@ -223,6 +207,7 @@ int yShiftAfterCategories = 20;
 //builds UI on UIScrollView
 - (void)viewDidLoad
 {
+  self.title = @"New Recipe";
   [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
   
@@ -383,6 +368,7 @@ int yShiftAfterCategories = 20;
   
   UITapGestureRecognizer *gestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard)];
   [self.scroller addGestureRecognizer:gestureRecognizer];
+  
 }
 
 - (void)didReceiveMemoryWarning

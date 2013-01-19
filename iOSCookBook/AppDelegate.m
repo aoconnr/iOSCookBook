@@ -11,20 +11,31 @@
 #import "ViewController.h"
 #import "Recipe.h"
 #import "iOSCookBookModel.h"
+//#import "BrowseCategoriesViewController.h"
+#import "ViewController.h"
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [self testModel];
+  [self testModel];
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-  self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-  self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
-    
+//  BrowseCategoriesViewController *firstview = [[BrowseCategoriesViewController alloc] initWithNibName:@"BrowseCategoriesViewController" bundle:nil];
+//  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstview];
+//  self.window.rootViewController = navController;
+  
+  ViewController *firstView = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstView];
+  self.window.rootViewController = navController;
+  [self.window makeKeyAndVisible];
 
+//  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//  // Override point for customization after application launch.
+//  self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+//  self.window.rootViewController = self.viewController;
+//  [self.window makeKeyAndVisible];
     return YES;
 }
 

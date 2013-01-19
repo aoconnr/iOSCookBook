@@ -8,9 +8,8 @@
 
 #import "ViewController.h"
 #import "NewRecipeViewController.h"
-#import "BrowseViewController.h"
-//TEMP
-#import "RecipeViewController.h"
+#import "BrowseCategoriesViewController.h"
+#import "BrowseFavouritesViewController.h"
 
 @interface ViewController ()
 
@@ -19,25 +18,30 @@
 @implementation ViewController
 
 -(IBAction)newRecipeButton:(id)sender{
-  NewRecipeViewController *next = [[NewRecipeViewController alloc] initWithNibName:nil bundle:nil];
-  [self presentViewController:next animated:TRUE completion:nil];
+  NewRecipeViewController *nextView = [[NewRecipeViewController alloc] initWithNibName:@"NewRecipeViewController" bundle:nil];
+  [self.navigationController pushViewController:nextView animated:TRUE];
 }
 
 //Temp directs to a view recipe page
 -(IBAction)favouriteButton:(id)sender{
-  RecipeViewController *next = [[RecipeViewController alloc] initWithNibName:nil bundle:nil];
-  [self presentViewController:next animated:TRUE completion:nil];
+  BrowseFavouritesViewController *nextView = [[BrowseFavouritesViewController alloc] initWithNibName:@"BrowseFavouritesViewController" bundle:nil];
+  [self.navigationController pushViewController:nextView animated:TRUE];
+//  RecipeViewController *next = [[RecipeViewController alloc] initWithNibName:nil bundle:nil];
+//  [self presentViewController:next animated:TRUE completion:nil];
 }
 
 -(IBAction)browseButton:(id)sender{
-  BrowseViewController *next = [[BrowseViewController alloc] initWithNibName:nil bundle:nil];
-  [self presentViewController:next animated:TRUE completion:nil];
+  BrowseCategoriesViewController *nextView = [[BrowseCategoriesViewController alloc] initWithNibName:@"BrowseRecipesViewController" bundle:nil];
+  [self.navigationController pushViewController:nextView animated:TRUE];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+  
+  self.title = @"Main Menu";
+  [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 }
 
 - (void)didReceiveMemoryWarning

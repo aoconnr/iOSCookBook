@@ -29,8 +29,12 @@
 		49F7667416A0629900B37461 /* NewRecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F7667216A0629900B37461 /* NewRecipeViewController.xib */; };
 		49F7669C16A2D9AF00B37461 /* RecipeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7669A16A2D9AF00B37461 /* RecipeViewController.m */; };
 		49F7669D16A2D9AF00B37461 /* RecipeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F7669B16A2D9AF00B37461 /* RecipeViewController.xib */; };
-		49F766A116A30D7500B37461 /* BrowseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F7669F16A30D7400B37461 /* BrowseViewController.m */; };
-		49F766A216A30D7500B37461 /* BrowseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F766A016A30D7400B37461 /* BrowseViewController.xib */; };
+		49F9B7D516A9CFBB0067B7FB /* BrowseCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9B7D316A9CFBB0067B7FB /* BrowseCategoriesViewController.m */; };
+		49F9B7D616A9CFBB0067B7FB /* BrowseCategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F9B7D416A9CFBB0067B7FB /* BrowseCategoriesViewController.xib */; };
+		49F9B7DA16A9FE980067B7FB /* BrowseRecipesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9B7D816A9FE980067B7FB /* BrowseRecipesViewController.m */; };
+		49F9B7DB16A9FE980067B7FB /* BrowseRecipesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F9B7D916A9FE980067B7FB /* BrowseRecipesViewController.xib */; };
+		49F9B7DF16AAA9720067B7FB /* BrowseFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9B7DD16AAA9720067B7FB /* BrowseFavouritesViewController.m */; };
+		49F9B7E016AAA9720067B7FB /* BrowseFavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F9B7DE16AAA9720067B7FB /* BrowseFavouritesViewController.xib */; };
 		E0CBEBCD16A37111003A67F5 /* cookbook.sql in Resources */ = {isa = PBXBuildFile; fileRef = E0CBEBCC16A37111003A67F5 /* cookbook.sql */; };
 		E0CBEBD316A37126003A67F5 /* iOSCookBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */; };
 		E0CBEBD416A37126003A67F5 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD216A37126003A67F5 /* Recipe.m */; };
@@ -81,9 +85,15 @@
 		49F7669916A2D9AF00B37461 /* RecipeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecipeViewController.h; path = ../RecipeViewController.h; sourceTree = "<group>"; };
 		49F7669A16A2D9AF00B37461 /* RecipeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecipeViewController.m; path = ../RecipeViewController.m; sourceTree = "<group>"; };
 		49F7669B16A2D9AF00B37461 /* RecipeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RecipeViewController.xib; path = ../RecipeViewController.xib; sourceTree = "<group>"; };
-		49F7669E16A30D7400B37461 /* BrowseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseViewController.h; sourceTree = "<group>"; };
-		49F7669F16A30D7400B37461 /* BrowseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseViewController.m; sourceTree = "<group>"; };
-		49F766A016A30D7400B37461 /* BrowseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseViewController.xib; sourceTree = "<group>"; };
+		49F9B7D216A9CFBB0067B7FB /* BrowseCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseCategoriesViewController.h; sourceTree = "<group>"; };
+		49F9B7D316A9CFBB0067B7FB /* BrowseCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseCategoriesViewController.m; sourceTree = "<group>"; };
+		49F9B7D416A9CFBB0067B7FB /* BrowseCategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseCategoriesViewController.xib; sourceTree = "<group>"; };
+		49F9B7D716A9FE980067B7FB /* BrowseRecipesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseRecipesViewController.h; sourceTree = "<group>"; };
+		49F9B7D816A9FE980067B7FB /* BrowseRecipesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseRecipesViewController.m; sourceTree = "<group>"; };
+		49F9B7D916A9FE980067B7FB /* BrowseRecipesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseRecipesViewController.xib; sourceTree = "<group>"; };
+		49F9B7DC16AAA9720067B7FB /* BrowseFavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseFavouritesViewController.h; sourceTree = "<group>"; };
+		49F9B7DD16AAA9720067B7FB /* BrowseFavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseFavouritesViewController.m; sourceTree = "<group>"; };
+		49F9B7DE16AAA9720067B7FB /* BrowseFavouritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseFavouritesViewController.xib; sourceTree = "<group>"; };
 		E0CBEBCC16A37111003A67F5 /* cookbook.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookbook.sql; sourceTree = "<group>"; };
 		E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCookBookModel.h; sourceTree = "<group>"; };
 		E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCookBookModel.m; sourceTree = "<group>"; };
@@ -161,6 +171,7 @@
 				4991B39E16A01A9900A005AF /* AppDelegate.h */,
 				4991B39F16A01A9900A005AF /* AppDelegate.m */,
 				4991B3A716A01A9900A005AF /* ViewController.h */,
+				4991B3AA16A01A9900A005AF /* ViewController.xib */,
 				4991B3A816A01A9900A005AF /* ViewController.m */,
 				E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */,
 				E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */,
@@ -170,7 +181,6 @@
 				E0E51D0516A5FDB10014D72B /* instruction.m */,
 				E0E51D0716A5FDC10014D72B /* ingredient.h */,
 				E0E51D0816A5FDC10014D72B /* ingredient.m */,
-				4991B3AA16A01A9900A005AF /* ViewController.xib */,
 				E0E51D0216A5FA5C0014D72B /* main.m */,
 				4940265316A85B2A00A2B400 /* alarmclock.mp3 */,
 				4991B39616A01A9900A005AF /* Supporting Files */,
@@ -180,10 +190,16 @@
 				49F7669916A2D9AF00B37461 /* RecipeViewController.h */,
 				49F7669A16A2D9AF00B37461 /* RecipeViewController.m */,
 				49F7669B16A2D9AF00B37461 /* RecipeViewController.xib */,
-				49F7669E16A30D7400B37461 /* BrowseViewController.h */,
-				49F7669F16A30D7400B37461 /* BrowseViewController.m */,
-				49F766A016A30D7400B37461 /* BrowseViewController.xib */,
 				49F3F5FB16A6FA0C00452861 /* DefaultRecipePic.gif */,
+				49F9B7D216A9CFBB0067B7FB /* BrowseCategoriesViewController.h */,
+				49F9B7D316A9CFBB0067B7FB /* BrowseCategoriesViewController.m */,
+				49F9B7D416A9CFBB0067B7FB /* BrowseCategoriesViewController.xib */,
+				49F9B7D716A9FE980067B7FB /* BrowseRecipesViewController.h */,
+				49F9B7D816A9FE980067B7FB /* BrowseRecipesViewController.m */,
+				49F9B7D916A9FE980067B7FB /* BrowseRecipesViewController.xib */,
+				49F9B7DC16AAA9720067B7FB /* BrowseFavouritesViewController.h */,
+				49F9B7DD16AAA9720067B7FB /* BrowseFavouritesViewController.m */,
+				49F9B7DE16AAA9720067B7FB /* BrowseFavouritesViewController.xib */,
 			);
 			path = iOSCookBook;
 			sourceTree = "<group>";
@@ -300,9 +316,11 @@
 				49F7667416A0629900B37461 /* NewRecipeViewController.xib in Resources */,
 				E0CBEBCD16A37111003A67F5 /* cookbook.sql in Resources */,
 				49F7669D16A2D9AF00B37461 /* RecipeViewController.xib in Resources */,
-				49F766A216A30D7500B37461 /* BrowseViewController.xib in Resources */,
 				49F3F5FC16A6FA0C00452861 /* DefaultRecipePic.gif in Resources */,
 				4940265416A85B2A00A2B400 /* alarmclock.mp3 in Resources */,
+				49F9B7D616A9CFBB0067B7FB /* BrowseCategoriesViewController.xib in Resources */,
+				49F9B7DB16A9FE980067B7FB /* BrowseRecipesViewController.xib in Resources */,
+				49F9B7E016AAA9720067B7FB /* BrowseFavouritesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +364,9 @@
 				E0E51D0616A5FDB10014D72B /* instruction.m in Sources */,
 				E0E51D0916A5FDC10014D72B /* ingredient.m in Sources */,
 				49F7669C16A2D9AF00B37461 /* RecipeViewController.m in Sources */,
-				49F766A116A30D7500B37461 /* BrowseViewController.m in Sources */,
+				49F9B7D516A9CFBB0067B7FB /* BrowseCategoriesViewController.m in Sources */,
+				49F9B7DA16A9FE980067B7FB /* BrowseRecipesViewController.m in Sources */,
+				49F9B7DF16AAA9720067B7FB /* BrowseFavouritesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
