@@ -121,8 +121,7 @@ int yShiftAfterCategories = 20;
     Recipe *recipe = [[Recipe alloc] initWithName:name.text categories:categories quantity:[servings.text intValue] photo:@"" favourite:0 rating:0 prep: [prepTime.text intValue] cook:[cookTime.text intValue] instructions:instructions ingredients:ingredients] ;
     [model addRecipe:recipe];
   ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
-  [self presentViewController:next animated:TRUE completion:nil];
-    
+  [self.navigationController popViewControllerAnimated:TRUE];
     //TODO: sort out the times and photo filename
     
 }
