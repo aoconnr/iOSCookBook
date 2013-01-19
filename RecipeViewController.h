@@ -14,4 +14,5 @@
 
 @property (nonatomic, readwrite, copy) NSString *selectedData;
 @property (weak, nonatomic) IBOutlet UIScrollView *scroller;
+@property (strong, nonatomic) Recipe *recipe;
 @end

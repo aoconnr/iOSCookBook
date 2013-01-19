@@ -173,8 +173,10 @@
 				4991B3A716A01A9900A005AF /* ViewController.h */,
 				4991B3AA16A01A9900A005AF /* ViewController.xib */,
 				4991B3A816A01A9900A005AF /* ViewController.m */,
-				E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */,
-				E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */,
+				4991B3AA16A01A9900A005AF /* ViewController.xib */,
+				E0E51D0216A5FA5C0014D72B /* main.m */,
+				4940265316A85B2A00A2B400 /* alarmclock.mp3 */,
+				4991B39616A01A9900A005AF /* Supporting Files */,
 				E0CBEBD116A37126003A67F5 /* Recipe.h */,
 				E0CBEBD216A37126003A67F5 /* Recipe.m */,
 				E0E51D0416A5FDB10014D72B /* instruction.h */,
@@ -207,13 +209,13 @@
 		4991B39616A01A9900A005AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4991B3A516A01A9900A005AF /* Default-568h@2x.png */,
 				E0CBEBCC16A37111003A67F5 /* cookbook.sql */,
 				4991B39716A01A9900A005AF /* iOSCookBook-Info.plist */,
 				4991B39816A01A9900A005AF /* InfoPlist.strings */,
 				4991B39D16A01A9900A005AF /* iOSCookBook-Prefix.pch */,
 				4991B3A116A01A9900A005AF /* Default.png */,
 				4991B3A316A01A9900A005AF /* Default@2x.png */,
-				4991B3A516A01A9900A005AF /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

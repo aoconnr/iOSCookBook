@@ -13,6 +13,7 @@
 @property (assign) NSInteger insId;
 @property (assign) NSString *name;
 @property (assign) NSInteger order;
+@property (assign) int timer;
 
--(id)initWithInstruction:(NSString*)i order:(int)o;
+-(id)initWithInstruction:(NSString*)i order:(int)o timer:(int)t;
 @end

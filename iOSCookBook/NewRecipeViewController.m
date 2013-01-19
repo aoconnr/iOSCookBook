@@ -8,6 +8,10 @@
 
 #import "NewRecipeViewController.h"
 #import "ViewController.h"
+#import "iOSCookBookModel.h"
+#import "Recipe.h"
+#import "ingredient.h"
+#import "instruction.h"
 
 @interface NewRecipeViewController ()
 
@@ -16,12 +20,18 @@
 
 @implementation NewRecipeViewController
 
+iOSCookBookModel *model;
 UITextField *name, *servings, *prepTime, *cookTime, *ingredInput, *instrInput, *catInput, *timerInput;
 UITextView *ingredList, *instrList, *catList;
 UILabel *ingredLabel, *instrLabel, *catLabel;
 UIButton *addIngredButton, *addInstrButton, *catButton, *saveButton, *addPhotoButton, *takePhotoButton, *undoIngredButton, *undoInstrButton, *undoCatButton;
 UIImageView *imageView;
 
+NSMutableArray *ingredients;
+NSMutableArray *instructions;
+NSMutableArray *categories;
+
+int ingCounter = 0;
 int instrCounter = 0;
 int yShiftAfterIngredients = 20;
 int yShiftAfterInstructions = 20;
@@ -45,6 +55,9 @@ int yShiftAfterCategories = 20;
     ingredList.text = [[ingredList.text stringByAppendingString:ingredInput.text] stringByAppendingString:@"\n"];
     yShiftAfterIngredients += 15;
     [self updatePositions];
+      ingCounter++;
+    ingredient *i = [[ingredient alloc] initWithIngredient:ingredInput.text order:ingCounter];
+    [ingredients addObject:i];
   }
 }
 
@@ -55,6 +68,8 @@ int yShiftAfterCategories = 20;
     NSString *newInstruction = [[NSString stringWithFormat:@"%i: ",instrCounter] stringByAppendingString: instrInput.text];
     if([timerInput.text length] > 0){
       newInstruction = [[newInstruction stringByAppendingString:@". Timer:"] stringByAppendingString:timerInput.text];
+        instruction *i = [[instruction alloc] initWithInstruction:instrInput.text order:instrCounter timer:timerInput.text];
+        [instructions addObject:i];
     }
 
     instrList.text = [[instrList.text stringByAppendingString:newInstruction] stringByAppendingString:@"\n"];
@@ -70,6 +85,7 @@ int yShiftAfterCategories = 20;
   if ([catInput.text length] > 0) {
     catList.text = [[catList.text stringByAppendingString:catInput.text] stringByAppendingString:@"\n"];
     yShiftAfterCategories += 15;
+      [categories addObject:catInput.text];
   
     [self updatePositions];
   }
@@ -102,8 +118,13 @@ int yShiftAfterCategories = 20;
 
 //Attempts to save, if valid then directs to the page of the newly created recipe
 -(IBAction)savePressed{
+    Recipe *recipe = [[Recipe alloc] initWithName:name.text categories:categories quantity:[servings.text intValue] photo:@"" favourite:0 rating:0 prep: [prepTime.text intValue] cook:[cookTime.text intValue] instructions:instructions ingredients:ingredients] ;
+    [model addRecipe:recipe];
   ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
   [self presentViewController:next animated:TRUE completion:nil];
+    
+    //TODO: sort out the times and photo filename
+    
 }
 
 //removes last item for ingredient list and updates positions
@@ -114,6 +135,8 @@ int yShiftAfterCategories = 20;
     for (int i=0; i<([splitString count]-2); i++) {
       newString = [[newString stringByAppendingString:[splitString objectAtIndex:i]] stringByAppendingString:@"\n"];
     }
+    [ingredients removeLastObject];
+    ingCounter--;
     ingredList.text = newString;
     yShiftAfterIngredients -= 15;
     [self updatePositions];
@@ -128,6 +151,7 @@ int yShiftAfterCategories = 20;
     for (int i=0; i<([splitString count]-2); i++) {
       newString = [[newString stringByAppendingString:[splitString objectAtIndex:i]] stringByAppendingString:@"\n"];
     }
+    [instructions removeLastObject];
     instrList.text = newString;
     instrCounter --;
     yShiftAfterInstructions -= 15;
@@ -143,6 +167,7 @@ int yShiftAfterCategories = 20;
     for (int i=0; i<([splitString count]-2); i++) {
       newString = [[newString stringByAppendingString:[splitString objectAtIndex:i]] stringByAppendingString:@"\n"];
     }
+    [categories removeLastObject];
     catList.text = newString;
     yShiftAfterCategories -= 15;
     [self updatePositions];
@@ -154,6 +179,9 @@ int yShiftAfterCategories = 20;
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        instructions = [NSMutableArray new];
+        ingredients = [NSMutableArray new];
+        model = [iOSCookBookModel new];
     }
     return self;
 }

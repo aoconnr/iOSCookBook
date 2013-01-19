@@ -11,11 +11,12 @@
 @implementation instruction
 
 
--(id)initWithInstruction:(NSString *)i order:(int)o{
+-(id)initWithInstruction:(NSString *)i order:(int)o timer:(int)t{
     self = [super init];
     if (self){
         self.name = i;
         self.order = o;
+        self.timer = t;
     }
     return self;
 }

@@ -23,6 +23,7 @@
 @property (strong) NSMutableArray *ingredients;
 @property (strong) NSMutableArray *instructions;
 
--(id)initWithRId:(NSInteger)rID;
+-(id)initWithName:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(NSString *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing;
+
 -(id)initWithrId:(int) rid name:(NSString*)n categories:(NSMutableArray*)c quantity:(int)q photo:(NSString*)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray*)ins ingredients:(NSMutableArray*)ing;
 @end
