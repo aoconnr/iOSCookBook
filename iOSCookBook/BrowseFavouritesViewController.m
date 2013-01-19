@@ -21,7 +21,7 @@
     if (self) {
         // Custom initialization
       self.title = @"Favourites";
-      tableViewData = [NSArray arrayWithObjects:@"Fav Recipe 0",@"Fav Recipe 1", nil];
+      tableViewData = [NSMutableArray arrayWithObjects:@"Fav Recipe 0",@"Fav Recipe 1", nil];
     }
     return self;
 }
@@ -51,6 +51,20 @@
   RecipeViewController *thirdView = [[RecipeViewController alloc] initWithNibName:@"RecipeViewController" bundle:nil];
   thirdView.selectedData = selected;
   [self.navigationController pushViewController:thirdView animated:TRUE];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableViewData removeObjectAtIndex:indexPath.row];
+}
+
+- (void)tableView:(UITableView *)tableView
+didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableView reloadData];
 }
 
 - (void)viewDidLoad

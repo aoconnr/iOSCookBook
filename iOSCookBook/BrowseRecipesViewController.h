@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BrowseRecipesViewController : UIViewController{
-  NSArray *tableViewData;
+  NSMutableArray *tableViewData;
   
   int rowSelectedPreviously;
 }

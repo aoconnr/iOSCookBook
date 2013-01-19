@@ -53,18 +53,33 @@
   [self.navigationController pushViewController:thirdView animated:TRUE];
 }
 
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return UITableViewCellEditingStyleDelete;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableViewData removeObjectAtIndex:indexPath.row];
+}
+
+- (void)tableView:(UITableView *)tableView
+didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+  [tableView reloadData];
+}
+
 - (void)viewDidLoad
 {
   [super viewDidLoad];
   // Do any additional setup after loading the view from its nib.
   if (rowSelectedPreviously == 0) {
-    tableViewData = [NSArray arrayWithObjects:@"Recipe 0",@"Recipe 1", nil];
+    tableViewData = [NSMutableArray arrayWithObjects:@"Recipe 0",@"Recipe 1", nil];
   }
   else if(rowSelectedPreviously == 1){
-    tableViewData = [NSArray arrayWithObjects:@"Recipe 2",@"Recipe 3", nil];
+    tableViewData = [NSMutableArray arrayWithObjects:@"Recipe 2",@"Recipe 3", nil];
   }
   else{
-    tableViewData = [NSArray arrayWithObjects:@"Recipe 6",@"Recipe 16", nil];
+    tableViewData = [NSMutableArray arrayWithObjects:@"Recipe 6",@"Recipe 16", nil];
   }
 }
 

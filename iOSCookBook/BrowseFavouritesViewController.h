@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface BrowseFavouritesViewController : UIViewController{
-  NSArray *tableViewData;
+  NSMutableArray *tableViewData;
 }
 
 @end
