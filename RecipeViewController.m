@@ -27,9 +27,16 @@ UILabel *ingredLabel, *instrLabel, *catLabel, *name, *servings, *prepTime, *cook
 UIButton *timerExample;
 UIImageView *imageView;
 NSTimer *timer;
+BOOL *timerRunning = FALSE;
+//test items ---
+int timeRemaining= 3;
+int z;
+int buttonTag;
+UIButton *aButton;
+UITextView *aLabel;
+NSMutableArray *testInstr, *testTimers;
+//--------------
 
-//test timer delay
-int t= 3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,17 +49,35 @@ int t= 3;
   return self;
 }
 
--(void)timerStart{
+-(void)timerStart:(id)sender{
+  //TODO: Add alert for user about cancelling timer
+  if (timerRunning == TRUE) {
+    [timer invalidate];
+    UIButton *timerButton = [self.scroller viewWithTag:buttonTag];
+    [timerButton setTitle:[NSString stringWithFormat:@"Timer: %i:00",[[testTimers objectAtIndex:buttonTag] intValue]] forState:UIControlStateNormal];
+  }
+  buttonTag = [sender tag];
+  timeRemaining = [[testTimers objectAtIndex:[sender tag]] intValue]*60;
   timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(tick) userInfo:nil repeats:YES];
+  timerRunning = TRUE;
 }
 
 -(void)tick{
-  t--;
-  if (t==0) {
+  timeRemaining--;
+  UIButton *timerButton = [self.scroller viewWithTag:buttonTag];
+  int minutes = timeRemaining/60;
+  int seconds = timeRemaining%60;
+  if(timeRemaining<60)
+    [timerButton setTitle:[NSString stringWithFormat:@"%i",seconds] forState:UIControlStateNormal];
+  else
+    [timerButton setTitle:[NSString stringWithFormat:@"%i:%i",minutes,seconds] forState:UIControlStateNormal];
+  if (timeRemaining==0) {
     [avPlayer play];
-    
+    [timerButton setTitle:[NSString stringWithFormat:@"Timer: %i:00",[[testTimers objectAtIndex:buttonTag] intValue]] forState:UIControlStateNormal];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Example" message:@"Example Timer finished" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
+    [timer invalidate];
+    timerRunning = FALSE;
   }
 }
 
@@ -114,7 +139,35 @@ int t= 3;
   instrLabel.text = @"Instructions";
   [self.scroller addSubview:instrLabel];
   
-  //TODO: add timer button to each line
+  int y_plot = 320;
+  
+  //Remains of some data used while testing timers
+  /*testInstr = [NSMutableArray arrayWithObjects:@"Step one",@"Step two: this one has a timer added to it. the previous has a timer value of 0",@"Step3",@"Step4",@"Step5",@"Step6", nil];
+  testTimers = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:0],[NSNumber numberWithInt:1],[NSNumber numberWithInt:3],[NSNumber numberWithInt:0],[NSNumber numberWithInt:2],[NSNumber numberWithInt:9], nil];
+  for (int i=0; i<[testInstr count]; i++){ */
+  for (instruction *i in recipe.instructions){
+    z++;
+    int timerValue = [[testTimers objectAtIndex:i] intValue];
+    if (timerValue > 0) {
+      aButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+      aButton.frame = CGRectMake(5, y_plot+40, 150, 20);
+      [aButton addTarget:self action:@selector(timerStart:) forControlEvents:UIControlEventTouchUpInside];
+      [aButton setTitle:@"Timer" forState:UIControlStateNormal];
+      [aButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+      [aButton setTitle:[NSString stringWithFormat:@"Timer: %i:00",timerValue] forState:UIControlStateNormal];
+      aButton.tag = i;
+      [self.scroller addSubview:aButton];
+    }
+    aLabel = [[UITextView alloc] initWithFrame:CGRectMake(5, y_plot, 300, 40)];
+    aLabel.text = [NSString stringWithFormat:@"%i. %@", i.order, i.name];
+    aLabel.editable = FALSE;
+    //+100 prevents values overlapping and related tags are always easy to get
+    //dont know if we need to mess with the text after output just thought I'd leave it for now.
+    aLabel.tag = z+100;
+    [self.scroller addSubview:aLabel];
+    y_plot += 65;
+  }
+  /*
     for (instruction *i in recipe.instructions){
         instrList = [[UITextView alloc] initWithFrame:CGRectMake(5, 320, 250, 60)];
         instrList.editable = FALSE;
@@ -122,28 +175,21 @@ int t= 3;
         instrList.text = [NSString stringWithFormat:@"%i. %@", i.order, i.name];
         [self.scroller addSubview:instrList];
     }
-  
-  timerExample = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  [timerExample addTarget:self action:@selector(timerStart) forControlEvents:UIControlEventTouchDown];
-  [timerExample setTitle:@"Timer" forState:UIControlStateNormal];
-  [timerExample setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  timerExample.frame = CGRectMake(220, 320, 80, 15);
-  [self.scroller addSubview:timerExample];
-  
-  catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 400, 150, 30)];
+  */
+  catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, y_plot+80, 150, 30)];
   catLabel.font = [UIFont systemFontOfSize:20];
   catLabel.text = @"Categories";
   [self.scroller addSubview:catLabel];
   
     for (NSString *c in recipe.categories){
-      catList = [[UITextView alloc] initWithFrame:CGRectMake(5, 440, 250, 30)];
+      catList = [[UITextView alloc] initWithFrame:CGRectMake(5, y_plot+120, 250, 30)];
       catList.editable = FALSE;
       catList.scrollEnabled = FALSE;
       catList.text = c;
       [self.scroller addSubview:catList];
     }
   
-  [self.scroller setContentSize:CGSizeMake(320, 550)];
+  [self.scroller setContentSize:CGSizeMake(320, y_plot+250)];
   
   
   NSString *stringPath = [[NSBundle mainBundle] pathForResource:@"alarmclock" ofType:@"mp3"];
