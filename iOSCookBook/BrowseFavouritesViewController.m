@@ -22,8 +22,8 @@
     if (self) {
         // Custom initialization
       self.title = @"Favourites";
-      tableViewData = [NSMutableArray arrayWithObjects:@"Fav Recipe 0",@"Fav Recipe 1", nil];
-        tableViewData = [model getFavourites];
+        model = [[iOSCookBookModel alloc] init];
+      tableViewData = [model getFavourites];
     }
     return self;
 }
@@ -43,7 +43,7 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MainCell"];
   }
   
-  cell.textLabel.text = [tableViewData objectAtIndex:indexPath.row];
+  cell.textLabel.text = [tableViewData objectAtIndex:indexPath.row][0];
   
   UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
   imgView.image = [UIImage imageNamed:@"DefaultRecipePic.gif"];
@@ -53,10 +53,15 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-  NSString *selected = [tableViewData objectAtIndex:indexPath.row];
-  RecipeViewController *thirdView = [[RecipeViewController alloc] initWithNibName:@"RecipeViewController" bundle:nil];
-  thirdView.selectedData = selected;
-  [self.navigationController pushViewController:thirdView animated:TRUE];
+    //get the selected row's recipe id
+
+    NSArray *rec = [tableViewData objectAtIndex:indexPath.row];
+    int selected = [[rec objectAtIndex:1] intValue];
+    RecipeViewController *thirdView = [[RecipeViewController alloc] initWithNibName:@"RecipeViewController" bundle:nil];
+
+    //send the selected recipe to the next view
+    Recipe *r = [model getRecipe:selected];
+    thirdView.recipe = r;  [self.navigationController pushViewController:thirdView animated:TRUE];
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView

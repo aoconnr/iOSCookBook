@@ -13,6 +13,6 @@
   NSMutableArray *tableViewData;
 }
 
-@property (strong) iOSCookBookModel *model;
+@property (strong, nonatomic) iOSCookBookModel *model;
 
 @end

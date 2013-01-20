@@ -27,5 +27,6 @@
 -(NSMutableArray*)getRecipesByCategory:(NSString*)s;
 -(void)addPhoto:(NSString*)photo toRecipe:(int)r;
 -(void)deleteRecipe:(int)r;
+-(void)setFavouriteForRecipeID:(int)rid to:(Boolean)b;
 
 @end

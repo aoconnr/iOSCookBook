@@ -57,9 +57,7 @@
     int selected = [[rec objectAtIndex:1] intValue];
     RecipeViewController *thirdView = [[RecipeViewController alloc] initWithNibName:@"RecipeViewController" bundle:nil];
     //send the selected recipe to the next view
-    NSLog(@"selected is: %i", selected);
     Recipe *r = [model getRecipe:selected];
-    NSLog(@"%@",r.name);
     thirdView.recipe = r;
   [self.navigationController pushViewController:thirdView animated:TRUE];
 }
@@ -71,7 +69,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-  [tableViewData removeObjectAtIndex:indexPath.row];
+    NSArray *rec = [tableViewData objectAtIndex:indexPath.row];
+    int selected = [[rec objectAtIndex:1] intValue];
+    [tableViewData removeObjectAtIndex:indexPath.row];
+    [model deleteRecipe:selected];
 }
 
 - (void)tableView:(UITableView *)tableView

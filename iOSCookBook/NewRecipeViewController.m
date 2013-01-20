@@ -127,7 +127,7 @@ int yShiftAfterCategories = 20;
     [model addRecipe:recipe];
     instrCounter = 0;
     ingCounter = 0;
-  ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
+  //ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
   [self.navigationController popViewControllerAnimated:TRUE];
     //TODO: sort out the times and photo filename
     

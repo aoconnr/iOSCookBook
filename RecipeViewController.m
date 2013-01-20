@@ -19,11 +19,10 @@
 @end
 
 @implementation RecipeViewController
-@synthesize selectedData;
+@synthesize selectedData, model, recipe;
 
-@synthesize recipe;
 UITextView *ingredList, *instrList, *catList;
-UILabel *ingredLabel, *instrLabel, *catLabel, *name, *servings, *prepTime, *cookTime;
+UILabel *ingredLabel, *instrLabel, *catLabel, *name, *servings, *prepTime, *cookTime, *favLabel;
 UIButton *timerExample;
 UIImageView *imageView;
 NSTimer *timer;
@@ -35,6 +34,7 @@ int buttonTag;
 UIButton *aButton;
 UITextView *aLabel;
 NSMutableArray *testInstr, *testTimers;
+UISwitch *favourite;
 //--------------
 
 
@@ -45,6 +45,7 @@ NSMutableArray *testInstr, *testTimers;
     // Custom initialization
     
     self.title = @"Recipe";
+    model = [[iOSCookBookModel alloc] init];
   }
   return self;
 }
@@ -105,7 +106,7 @@ NSMutableArray *testInstr, *testTimers;
   [self.scroller addSubview:imageView];
   
   servings = [[UILabel alloc] initWithFrame:CGRectMake(5, 140, 97, 30)];
-  servings.text = [NSString stringWithFormat:@"%i",recipe.quantity];
+  servings.text = [NSString stringWithFormat:@"Serves: %i",recipe.quantity];
   servings.font = [UIFont systemFontOfSize:15];
   [self.scroller addSubview:servings];
   
@@ -125,12 +126,14 @@ NSMutableArray *testInstr, *testTimers;
   [self.scroller addSubview:ingredLabel];
   
   //TODO: Expand when text added
+    int plotY = 0;
     for (ingredient *i in recipe.ingredients){
-        ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 205, 300, 60)];
+        UITextView *ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 205 + plotY, 300, 60)];
         ingredList.editable = FALSE;
         ingredList.scrollEnabled = FALSE;
         ingredList.text = i.name;
         [self.scroller addSubview:ingredList];
+        plotY += 20;
     }
   
   instrLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 280, 150, 30)];
@@ -187,8 +190,18 @@ NSMutableArray *testInstr, *testTimers;
       catList.text = c;
       [self.scroller addSubview:catList];
     }
-  
-  [self.scroller setContentSize:CGSizeMake(320, y_plot+250)];
+    
+    favLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, y_plot+200, 200, 30)];
+    favLabel.font = [UIFont systemFontOfSize:18];
+    favLabel.text = @"Set as a favourite recipe:";
+    [self.scroller addSubview:favLabel];
+    
+    favourite = [[UISwitch alloc] initWithFrame:CGRectMake(230, y_plot +200, 0, 0)];
+    [favourite setOn:recipe.favourite];
+    [favourite addTarget:self action:@selector(setFavourite:) forControlEvents:UIControlEventValueChanged];
+    
+    [self.scroller addSubview:favourite];
+    [self.scroller setContentSize:CGSizeMake(320, y_plot+250)];
   
   
   NSString *stringPath = [[NSBundle mainBundle] pathForResource:@"alarmclock" ofType:@"mp3"];
@@ -199,6 +212,19 @@ NSMutableArray *testInstr, *testTimers;
   avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
   [avPlayer setNumberOfLoops:2];
   [avPlayer setVolume:1.0];
+}
+
+
+-(void)setFavourite:(id)sender{
+    
+    if (favourite.on){
+        [model setFavouriteForRecipeID:recipe.rId to:1];
+    }
+    else {
+        [model setFavouriteForRecipeID:recipe.rId to:0];
+    }
+    
+    
 }
 
 

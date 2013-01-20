@@ -118,7 +118,7 @@
     NSMutableArray *ingredients = [NSMutableArray new];
     NSMutableArray *instructions = [NSMutableArray new];
     NSMutableArray *categories = [NSMutableArray new];
-    NSLog(@"in getRecipe wih n: %i", n);
+
     Recipe *r = [Recipe alloc];
     if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
         
@@ -133,7 +133,6 @@
                 int o = sqlite3_column_int(compiledStatement, 1);               
                 ingredient *ing = [[ingredient alloc] initWithIngredient:i order:o];
                 [ingredients addObject:ing];
-                NSLog(@"Ingredient: %@", i);
             }
         }
         sqlite3_reset(compiledStatement);
@@ -213,7 +212,7 @@
                 NSArray *a = [NSArray arrayWithObjects:name, [NSNumber numberWithInt:r_id], photo, nil];
                 //add array to array to be returned
                 [recipes addObject:a];
-                sqlite3_reset(compiledStatement);
+               // sqlite3_reset(compiledStatement);
             }
         }
         sqlite3_finalize(compiledStatement);
@@ -343,11 +342,20 @@
     sqlite3_close(database);
 }
 
--(NSString*)secondsToTimeString:(int)s{
-    int secs = s % 60;
-    int mins = s/60;
-    int hours = mins/60;
-    mins = mins%60;
-    return[NSString stringWithFormat:@"%02i:%02i:%02i", hours, mins, secs];
+//takes a recipe id and a boolean value and sets the favourite attribute in the database of the recipe to the boolean value
+-(void)setFavouriteForRecipeID:(int)rid to:(Boolean)b{
+    sqlite3 *database;
+    if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
+        const char *sqlStatement = "UPDATE recipes SET favourite=? WHERE r_id=?";
+        sqlite3_stmt *compiledStatement;
+        
+        if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+            sqlite3_bind_int(compiledStatement, 1, b);
+            sqlite3_bind_int(compiledStatement, 2, rid);
+            sqlite3_step(compiledStatement);
+        }
+        sqlite3_finalize(compiledStatement);
+    }
+    sqlite3_close(database);    
 }
 @end
