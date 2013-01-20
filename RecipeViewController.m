@@ -101,7 +101,6 @@ NSMutableArray *testInstr, *testTimers;
   [self.scroller addSubview:name];
   
   imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];
-  imageView.backgroundColor = [UIColor orangeColor];
   imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",recipe.photo]];
   [self.scroller addSubview:imageView];
   
