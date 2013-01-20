@@ -19,7 +19,7 @@
 @property (strong) NSString *databasePath;
 
 -(id)init;
--(Recipe*)getRecipe:(NSInteger)n;
+-(Recipe*)getRecipe:(int)n;
 -(void)addRecipe:(Recipe*)r;
 
 -(NSMutableArray*)getFavourites;

@@ -12,7 +12,7 @@
 
 
 @property (assign) NSInteger ingId;
-@property (assign) NSString *name;
+@property (strong) NSString *name;
 @property (assign) NSInteger order;
 
 -(id)initWithIngredient:(NSString*)i order:(int)o;

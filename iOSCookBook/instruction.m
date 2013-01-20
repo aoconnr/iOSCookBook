@@ -10,6 +10,7 @@
 
 @implementation instruction
 
+@synthesize name, order, timer;
 
 -(id)initWithInstruction:(NSString *)i order:(int)o timer:(int)t{
     self = [super init];

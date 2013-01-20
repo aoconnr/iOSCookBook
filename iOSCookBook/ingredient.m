@@ -9,6 +9,7 @@
 #import "ingredient.h"
 
 @implementation ingredient
+@synthesize name, order;
 
 
 -(id)initWithIngredient:(NSString *)i order:(int)o{

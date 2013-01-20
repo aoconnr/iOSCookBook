@@ -14,6 +14,7 @@
 @end
 
 @implementation BrowseFavouritesViewController
+@synthesize model;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,6 +23,7 @@
         // Custom initialization
       self.title = @"Favourites";
       tableViewData = [NSMutableArray arrayWithObjects:@"Fav Recipe 0",@"Fav Recipe 1", nil];
+        tableViewData = [model getFavourites];
     }
     return self;
 }

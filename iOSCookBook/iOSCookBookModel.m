@@ -38,6 +38,7 @@
     
     sqlite3 *database;
     if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
+
         // Add to the recipe table
         const char *addsqlStatement = "INSERT INTO recipes (name, quantity, photo, favourite, rating, prep_time, cook_time) VALUES (?,?,?,?,?,?,?)";
         sqlite3_stmt *compiledStatement;
@@ -56,7 +57,6 @@
             sqlite3_reset(compiledStatement);
             //get r_id for the recipe
             row = sqlite3_last_insert_rowid(database);
-            NSLog(@"Row is %i", row);
         }
         
         //add to the ingredient table
@@ -98,7 +98,6 @@
         sqlite3_clear_bindings(compiledStatement);
         addsqlStatement = "INSERT INTO categories (name, r_id) VALUES (?,?)";
         if (sqlite3_prepare_v2(database, addsqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
-            
             for (NSString *c in r.categories){
                 //add name
                 sqlite3_bind_text(compiledStatement, 1, [c UTF8String], -1, SQLITE_TRANSIENT);
@@ -114,12 +113,12 @@
 }
 
 // takes the recipe id (as an integer) and returns a Recipe object populated with the stored details of the recipe
--(Recipe*)getRecipe:(NSInteger)n{
+-(Recipe*)getRecipe:(int)n{
     sqlite3 *database;
     NSMutableArray *ingredients = [NSMutableArray new];
     NSMutableArray *instructions = [NSMutableArray new];
     NSMutableArray *categories = [NSMutableArray new];
-    
+    NSLog(@"in getRecipe wih n: %i", n);
     Recipe *r = [Recipe alloc];
     if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
         
@@ -134,6 +133,7 @@
                 int o = sqlite3_column_int(compiledStatement, 1);               
                 ingredient *ing = [[ingredient alloc] initWithIngredient:i order:o];
                 [ingredients addObject:ing];
+                NSLog(@"Ingredient: %@", i);
             }
         }
         sqlite3_reset(compiledStatement);
@@ -237,7 +237,7 @@
                 //get recipe name
                 NSString *name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
                 //get r_id                
-                NSInteger r_id = sqlite3_column_int(compiledStatement, 1);
+                int r_id = sqlite3_column_int(compiledStatement, 1);
                 //get photo name
                 NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 2)];
                 NSArray *a = [NSArray arrayWithObjects:name, [NSNumber numberWithInt:r_id], photo, nil];
@@ -284,12 +284,12 @@
         sqlite3_stmt *compiledStatement;
         
         if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
-            
             while (sqlite3_step(compiledStatement) == SQLITE_ROW){
+
                 //get recipe name
                 NSString *name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
                 [recipes addObject:name];
-                sqlite3_reset(compiledStatement);
+                //sqlite3_reset(compiledStatement);
             }
         }
         sqlite3_finalize(compiledStatement);

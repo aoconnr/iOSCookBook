@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iOSCookBookModel.h"
 
 @interface BrowseCategoriesViewController : UIViewController{
   NSArray *tableViewData;
 }
 
+@property (strong) iOSCookBookModel *model;
 @end

@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Recipe.h"
+#import "iOSCookBookModel.h"
 
 @interface BrowseRecipesViewController : UIViewController{
   NSMutableArray *tableViewData;
   
-  int rowSelectedPreviously;
+  //int rowSelectedPreviously;
 }
 
-@property (nonatomic) int rowSelectedPreviously;
+//@property (nonatomic) int rowSelectedPreviously;
+@property (strong) NSMutableArray* recipeList;
+@property (strong) iOSCookBookModel *model;
+
 @end

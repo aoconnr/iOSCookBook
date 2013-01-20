@@ -11,7 +11,7 @@
 @interface instruction : NSObject
 
 @property (assign) NSInteger insId;
-@property (assign) NSString *name;
+@property (strong) NSString *name;
 @property (assign) NSInteger order;
 @property (assign) int timer;
 

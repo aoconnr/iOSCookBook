@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iOSCookBookModel.h"
 
 @interface BrowseFavouritesViewController : UIViewController{
   NSMutableArray *tableViewData;
 }
+
+@property (strong) iOSCookBookModel *model;
 
 @end
