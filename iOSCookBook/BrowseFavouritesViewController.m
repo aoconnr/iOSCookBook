@@ -43,6 +43,10 @@
   
   cell.textLabel.text = [tableViewData objectAtIndex:indexPath.row];
   
+  UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+  imgView.image = [UIImage imageNamed:@"DefaultRecipePic.gif"];
+  cell.imageView.image = imgView.image;
+  
   return cell;
 }
 
