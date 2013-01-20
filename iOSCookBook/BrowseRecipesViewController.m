@@ -42,6 +42,11 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MainCell"];
   }
   cell.textLabel.text = [tableViewData objectAtIndex:indexPath.row][0];
+  
+  UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+  imgView.image = [UIImage imageNamed:@"DefaultRecipePic.gif"];
+  cell.imageView.image = imgView.image;
+  
   return cell;
 }
 
@@ -80,15 +85,7 @@ didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
   // Do any additional setup after loading the view from its nib.
     
     tableViewData = recipeList;
-//  if (rowSelectedPreviously == 0) {
-//    tableViewData = [NSMutableArray arrayWithObjects:@"Recipe 0",@"Recipe 1", nil];
-//  }
-//  else if(rowSelectedPreviously == 1){
-//    tableViewData = [NSMutableArray arrayWithObjects:@"Recipe 2",@"Recipe 3", nil];
-//  }
-//  else{
-//    tableViewData = [NSMutableArray arrayWithObjects:@"Recipe 6",@"Recipe 16", nil];
-//  }
+
 }
 
 - (void)didReceiveMemoryWarning
