@@ -28,15 +28,14 @@ UIImageView *imageView;
 NSTimer *timer;
 BOOL *timerRunning = FALSE;
 NSMutableDictionary *timerDict;
-//test items ---
-//int timeRemaining = 10;
+
 int z;
 int buttonTag;
 UIButton *aButton;
 UITextView *aLabel;
 NSMutableArray *testInstr, *testTimers;
 UISwitch *favourite;
-//--------------
+
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -129,8 +128,6 @@ UISwitch *favourite;
   name.text = [NSString stringWithFormat:@"%@",recipe.name];
   [self.scroller addSubview:name];
   
-    
-    //TODO: Set image
   imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];
   imageView.image = recipe.photo;
   [self.scroller addSubview:imageView];
@@ -156,16 +153,15 @@ UISwitch *favourite;
   ingredLabel.text = @"Ingredients";
   [self.scroller addSubview:ingredLabel];
   
-  //TODO: Expand when text added
-    int y_plot = 215;
-    for (ingredient *i in recipe.ingredients){
-        UITextView *ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 0 + y_plot, 300, 20)];
-        ingredList.editable = FALSE;
-        ingredList.scrollEnabled = FALSE;
-        ingredList.text = i.name;
-        [self.scroller addSubview:ingredList];
-        y_plot += 30;
-    }
+  int y_plot = 215;
+  for (ingredient *i in recipe.ingredients){
+    UITextView *ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 0 + y_plot, 300, 20)];
+    ingredList.editable = FALSE;
+    ingredList.scrollEnabled = FALSE;
+    ingredList.text = i.name;
+    [self.scroller addSubview:ingredList];
+    y_plot += 30;
+  }
   
   instrLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, y_plot+45, 150, 30)];
   instrLabel.font = [UIFont systemFontOfSize:20];
@@ -198,9 +194,6 @@ UISwitch *favourite;
     aLabel = [[UITextView alloc] initWithFrame:CGRectMake(5, y_plot, 300, 40)];
     aLabel.text = [NSString stringWithFormat:@"%i. %@", i.order, i.name];
     aLabel.editable = FALSE;
-    //+100 prevents values overlapping and related tags are always easy to get
-    //dont know if we need to mess with the text after output just thought I'd leave it for now.
-    aLabel.tag = i.order+100;
     [self.scroller addSubview:aLabel];
     y_plot += 65;
   }
@@ -251,15 +244,15 @@ UISwitch *favourite;
     
     [self.scroller setContentSize:CGSizeMake(320, y_plot+250)];
   
-  
+  //leaks in simulator iOS6 is ok for device
   NSString *stringPath = [[NSBundle mainBundle] pathForResource:@"alarmclock" ofType:@"mp3"];
   NSURL *url = [NSURL fileURLWithPath:stringPath];
-  
   NSError *error;
   
   avPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
   [avPlayer setNumberOfLoops:2];
   [avPlayer setVolume:1.0];
+   
 }
 
 

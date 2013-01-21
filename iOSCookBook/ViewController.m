@@ -17,6 +17,7 @@
 
 @implementation ViewController
 
+//basic navigation options on main menu
 -(IBAction)newRecipeButton:(id)sender{
   NewRecipeViewController *nextView = [[NewRecipeViewController alloc] initWithNibName:@"NewRecipeViewController" bundle:nil];
   [self.navigationController pushViewController:nextView animated:TRUE];

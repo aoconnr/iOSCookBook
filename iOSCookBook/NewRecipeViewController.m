@@ -53,17 +53,16 @@ int yShiftAfterCategories = 20;
     ingredList.text = [[ingredList.text stringByAppendingString:ingredInput.text] stringByAppendingString:@"\n"];
     yShiftAfterIngredients += 15;
     [self updatePositions];
-      ingCounter++;
+    ingCounter++;
     ingredient *i = [[ingredient alloc] initWithIngredient:ingredInput.text order:ingCounter];
     [ingredients addObject:i];
-      ingredInput.text = @"";
+    ingredInput.text = @"";
   }
 }
 
 //adds new instruction and updates positions
 - (IBAction)addInstruction{
   int timerValue = [timerInput.text intValue]*60;
-  NSLog([NSString stringWithFormat:@"%i",timerValue]);
   if ([instrInput.text length] > 0) {
     instrCounter++;
     NSString *newInstruction = [[NSString stringWithFormat:@"%i: ",instrCounter] stringByAppendingString: instrInput.text];
@@ -73,13 +72,13 @@ int yShiftAfterCategories = 20;
     }
     instruction *i = [[instruction alloc] initWithInstruction:instrInput.text order:instrCounter timer:timerValue];
     [instructions addObject:i];
-
+    
     instrList.text = [[instrList.text stringByAppendingString:newInstruction] stringByAppendingString:@"\n"];
     yShiftAfterInstructions += 15;
     
     [self updatePositions];
-      instrInput.text = @"";
-      timerInput.text = @"";
+    instrInput.text = @"";
+    timerInput.text = @"";
   }
   
 }
@@ -89,9 +88,9 @@ int yShiftAfterCategories = 20;
   if ([catInput.text length] > 0) {
     catList.text = [[catList.text stringByAppendingString:catInput.text] stringByAppendingString:@"\n"];
     yShiftAfterCategories += 15;
-      [categories addObject:catInput.text];
+    [categories addObject:catInput.text];
     [self updatePositions];
-      catInput.text = @"";
+    catInput.text = @"";
   }
 }
 
@@ -122,15 +121,29 @@ int yShiftAfterCategories = 20;
 
 //Attempts to save, if valid, then directs back to the main menu
 -(IBAction)savePressed{
-
+  BOOL save =1;
+  //recipe is not valid without a name
+  if ([categories count] ==0){
+    UIAlertView *errormsg= [[UIAlertView alloc] initWithTitle:@"Error" message:@"A recipe must be in a category to be saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errormsg show];
+    save = 0;
+  }
+  //recipe is not valid with no categories
+  if (name.text == @"" || name.text == NULL){
+    UIAlertView *errormsg= [[UIAlertView alloc] initWithTitle:@"Error" message:@"A recipe requires a name to be saved" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errormsg show];
+    save = 0;
+  }
+  //if recipe is valid, then it can be saved
+  if (save){
     Recipe *recipe = [[Recipe alloc] initWithName:name.text categories:categories quantity:[servings.text intValue] photo:imageView.image favourite:0 rating:0 prep: [prepTime.text intValue] cook:[cookTime.text intValue] instructions:instructions ingredients:ingredients] ;
     [model addRecipe:recipe];
     instrCounter = 0;
     ingCounter = 0;
-  //ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
-  [self.navigationController popViewControllerAnimated:TRUE];
-    //TODO: sort out the times and photo filename
-    
+
+    [self.navigationController popViewControllerAnimated:TRUE];
+
+  }
 }
 
 //removes last item for ingredient list and updates positions
@@ -182,15 +195,15 @@ int yShiftAfterCategories = 20;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        instructions = [NSMutableArray new];
-        ingredients = [NSMutableArray new];
-        categories = [NSMutableArray new];
-        model = [iOSCookBookModel new];
-    }
-    return self;
+  self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+  if (self) {
+    // Custom initialization
+    instructions = [NSMutableArray new];
+    ingredients = [NSMutableArray new];
+    categories = [NSMutableArray new];
+    model = [iOSCookBookModel new];
+  }
+  return self;
 }
 
 //shifts positions keep page format with longer lists
@@ -243,11 +256,11 @@ int yShiftAfterCategories = 20;
 {
   self.title = @"New Recipe";
   [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+  // Do any additional setup after loading the view from its nib.
   
   [self.scroller setScrollEnabled:TRUE];
   self.scroller.backgroundColor = [UIColor whiteColor];
-  //CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+
   name = [[UITextField alloc] initWithFrame:CGRectMake(120, 5, 190, 30)];
   [self defaultTextFieldValues:name];
   name.placeholder = @"Recipe Name";
@@ -257,20 +270,20 @@ int yShiftAfterCategories = 20;
   imageView.backgroundColor = [UIColor orangeColor];
   imageView.image = [UIImage imageNamed:@"DefaultRecipePic.gif"];
   [self.scroller addSubview:imageView];
-    
-    addPhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [addPhotoButton addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchDown];
-    [addPhotoButton setTitle:@"Add Photo" forState:UIControlStateNormal];
-    addPhotoButton.frame = CGRectMake(120, 45, 100, 30);
-    [addPhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.scroller addSubview:addPhotoButton];
-    
-    takePhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [takePhotoButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchDown];
-    [takePhotoButton setTitle:@"Take Photo" forState:UIControlStateNormal];
-    takePhotoButton.frame = CGRectMake(120, 85, 100, 30);
-    [takePhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.scroller addSubview:takePhotoButton];
+  
+  addPhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [addPhotoButton addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchDown];
+  [addPhotoButton setTitle:@"Add Photo" forState:UIControlStateNormal];
+  addPhotoButton.frame = CGRectMake(120, 45, 100, 30);
+  [addPhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [self.scroller addSubview:addPhotoButton];
+  
+  takePhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  [takePhotoButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchDown];
+  [takePhotoButton setTitle:@"Take Photo" forState:UIControlStateNormal];
+  takePhotoButton.frame = CGRectMake(120, 85, 100, 30);
+  [takePhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [self.scroller addSubview:takePhotoButton];
   
   servings = [[UITextField alloc] initWithFrame:CGRectMake(5, 150, 97, 30)];
   [self defaultTextFieldValues:servings];
@@ -283,7 +296,7 @@ int yShiftAfterCategories = 20;
   prepTime.placeholder = @"Prep Time";
   prepTime.keyboardType = UIKeyboardTypeDecimalPad;
   [self.scroller addSubview:prepTime];
-
+  
   cookTime = [[UITextField alloc] initWithFrame:CGRectMake(210, 150, 97, 30)];
   [self defaultTextFieldValues:cookTime];
   cookTime.placeholder = @"Cook Time";
@@ -327,26 +340,23 @@ int yShiftAfterCategories = 20;
   instrLabel.text = @"Instructions";
   [self.scroller addSubview:instrLabel];
   
-  //TODO: add timer button to each line
   instrList = [[UITextView alloc] initWithFrame:CGRectMake(5, 330, 250, 20)];
   instrList.editable = FALSE;
   instrList.scrollEnabled = FALSE;
   [self.scroller addSubview:instrList];
   
-   instrInput = [[UITextView alloc] initWithFrame:CGRectMake(5, 360, 205, 30)];
-    [instrInput.layer setBorderColor:[[[UIColor grayColor]colorWithAlphaComponent:0.5] CGColor]];
-    [instrInput.layer setBorderWidth:2.0];
-    [instrInput.layer setCornerRadius:8.0f];
-    [instrInput.layer setMasksToBounds:YES];
-   //[self defaultTextFieldValues:instrInput];
-  //instrInput.placeholder = @"Instruction";
+  instrInput = [[UITextView alloc] initWithFrame:CGRectMake(5, 360, 205, 30)];
+  [instrInput.layer setBorderColor:[[[UIColor grayColor]colorWithAlphaComponent:0.5] CGColor]];
+  [instrInput.layer setBorderWidth:2.0];
+  [instrInput.layer setCornerRadius:8.0f];
+  [instrInput.layer setMasksToBounds:YES];
   [self.scroller addSubview:instrInput];
   
-    timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 390, 200, 50)];
-    timerLabel.font = [UIFont systemFontOfSize:15];
-    timerLabel.text = @"Instruction timer:";
-    [self.scroller addSubview:timerLabel];
-    
+  timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 390, 200, 50)];
+  timerLabel.font = [UIFont systemFontOfSize:15];
+  timerLabel.text = @"Instruction timer:";
+  [self.scroller addSubview:timerLabel];
+  
   timerInput = [[UITextField alloc] initWithFrame:CGRectMake(130, 400, 75, 30)];
   [self defaultTextFieldValues:timerInput];
   timerInput.placeholder = @"minutes";
@@ -412,8 +422,8 @@ int yShiftAfterCategories = 20;
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+  [super didReceiveMemoryWarning];
+  // Dispose of any resources that can be recreated.
 }
 
 @end

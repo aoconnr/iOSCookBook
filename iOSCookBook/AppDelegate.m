@@ -20,22 +20,14 @@
 {
     
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-//  BrowseCategoriesViewController *firstview = [[BrowseCategoriesViewController alloc] initWithNibName:@"BrowseCategoriesViewController" bundle:nil];
-//  UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstview];
-//  self.window.rootViewController = navController;
   
   ViewController *firstView = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:firstView];
+  
   self.window.rootViewController = navController;
   [self.window makeKeyAndVisible];
-
-//  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//  // Override point for customization after application launch.
-//  self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-//  self.window.rootViewController = self.viewController;
-//  [self.window makeKeyAndVisible];
-    return YES;
+  
+  return YES;
 }
 
 

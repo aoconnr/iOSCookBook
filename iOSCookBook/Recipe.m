@@ -49,6 +49,7 @@
     }
     return self;
 }
+
 -(id)initWithName:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(UIImage *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
     self = [super init];
     if (self){

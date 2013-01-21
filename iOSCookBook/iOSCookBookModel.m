@@ -223,8 +223,7 @@
                 NSString *name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
                 //get r_id
                 NSInteger r_id = sqlite3_column_int(compiledStatement, 1);
-                //get photo name
-                //NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 2)];
+                //get photo
               NSData *data = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 3) length:sqlite3_column_bytes(compiledStatement, 3)];
               UIImage *photo;
               if(data == nil){
@@ -263,7 +262,7 @@
                 NSString *name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
                 //get r_id                
                 int r_id = sqlite3_column_int(compiledStatement, 1);
-                //get photo name
+                //get photo
                 NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 2)];
                 NSArray *a = [NSArray arrayWithObjects:name, [NSNumber numberWithInt:r_id], photo, nil];
                 [recipes addObject:a];

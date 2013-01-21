@@ -11,7 +11,6 @@
 
 @interface ingredient : NSObject
 
-
 @property (assign) NSInteger ingId;
 @property (strong) NSString *name;
 @property (assign) NSInteger order;
