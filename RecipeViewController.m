@@ -238,6 +238,14 @@ UISwitch *favourite;
     favourite = [[UISwitch alloc] initWithFrame:CGRectMake(230, y_plot +200, 0, 0)];
     [favourite setOn:recipe.favourite];
     [favourite addTarget:self action:@selector(setFavourite:) forControlEvents:UIControlEventValueChanged];
+  
+  twitterButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  twitterButton.frame = CGRectMake((210), y_plot+150, 100, 40);
+  [twitterButton setTitle:@"Send Tweet" forState:UIControlStateNormal];
+  [twitterButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [twitterButton addTarget:self action:@selector(tweet) forControlEvents:UIControlEventTouchDown];
+  [self.scroller addSubview:twitterButton];
+  
     [self.scroller addSubview:favourite];
     
     
