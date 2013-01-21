@@ -11,7 +11,6 @@
 #import "ingredient.h"
 #import "instruction.h"
 
-
 @interface RecipeViewController (){
   AVAudioPlayer *avPlayer;
 }
@@ -19,17 +18,17 @@
 @end
 
 @implementation RecipeViewController
-@synthesize selectedData, model, recipe;
+@synthesize selectedData, model, recipe, timeRemaining;
 
 UITextView *ingredList, *instrList, *catList;
 UILabel *ingredLabel, *instrLabel, *catLabel, *name, *servings, *prepTime, *cookTime, *favLabel;
-UIButton *timerExample;
+UIButton *timerExample, *twitterButton;
 UIImageView *imageView;
 NSTimer *timer;
 BOOL *timerRunning = FALSE;
 NSMutableDictionary *timerDict;
 //test items ---
-int timeRemaining = 10;
+//int timeRemaining = 10;
 int z;
 int buttonTag;
 UIButton *aButton;
@@ -65,8 +64,8 @@ UISwitch *favourite;
 }
 
 -(void)tick{
-  NSLog([NSString stringWithFormat:@"%i",timeRemaining]);
   timeRemaining--;
+
   UIButton *timerButton = [self.scroller viewWithTag:buttonTag];
   int hours = timeRemaining/3600;
   int minutes = (timeRemaining%3600)/60;
@@ -92,6 +91,29 @@ UISwitch *favourite;
   if (buttonIndex == 0) {
     [avPlayer stop];
   }
+}
+
+
+-(IBAction)tweet{
+  TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
+  [twitter addImage:[UIImage imageNamed:@"DefaultRecipePic.gif"]];
+  [twitter addURL:[NSURL URLWithString:@"https://twitter.com/"]];
+  [twitter setInitialText:@"Sent by iOSCookBook test app"];
+  twitter.completionHandler = ^(TWTweetComposeViewControllerResult result) {
+    NSString *title = @"Twitter Status";
+    NSString *msg;
+    if (result == TWTweetComposeViewControllerResultCancelled) {
+      msg = @"Tweet was cancelled";
+    }
+    else if (result == TWTweetComposeViewControllerResultDone){
+      msg = @"Tweet was sent";
+    }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+    [alert show];
+    [self dismissViewControllerAnimated:TRUE completion:nil];
+  };
+  [self presentModalViewController:twitter animated:TRUE];
+  
 }
 
 - (void)viewDidLoad
@@ -200,7 +222,14 @@ UISwitch *favourite;
     favourite = [[UISwitch alloc] initWithFrame:CGRectMake(230, y_plot +200, 0, 0)];
     [favourite setOn:recipe.favourite];
     [favourite addTarget:self action:@selector(setFavourite:) forControlEvents:UIControlEventValueChanged];
-    
+  
+  twitterButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+  twitterButton.frame = CGRectMake((210), y_plot+150, 100, 40);
+  [twitterButton setTitle:@"Send Tweet" forState:UIControlStateNormal];
+  [twitterButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+  [twitterButton addTarget:self action:@selector(tweet) forControlEvents:UIControlEventTouchDown];
+  [self.scroller addSubview:twitterButton];
+  
     [self.scroller addSubview:favourite];
     [self.scroller setContentSize:CGSizeMake(320, y_plot+250)];
   
