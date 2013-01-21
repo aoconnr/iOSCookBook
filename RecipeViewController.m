@@ -33,7 +33,7 @@ int z;
 int buttonTag;
 UIButton *aButton;
 UITextView *aLabel;
-NSMutableArray *testInstr, *testTimers;
+NSMutableArray *timers;
 UISwitch *favourite;
 
 
@@ -51,11 +51,11 @@ UISwitch *favourite;
 }
 
 -(void)timerStart:(id)sender{
-  //TODO: Add alert for user about cancelling timer
+  
   if (timerRunning == TRUE) {
     [timer invalidate];
     UIButton *timerButton = [self.scroller viewWithTag:buttonTag];
-    [timerButton setTitle:[NSString stringWithFormat:@"Timer: %i:00",[[testTimers objectAtIndex:buttonTag] intValue]] forState:UIControlStateNormal];
+    [timerButton setTitle:[NSString stringWithFormat:@"Timer: %i:00",[[timers objectAtIndex:buttonTag] intValue]] forState:UIControlStateNormal];
   }
   buttonTag = [sender tag];
   timeRemaining = [sender tag];
@@ -78,8 +78,8 @@ UISwitch *favourite;
     [timerButton setTitle:[NSString stringWithFormat:@"Timer: %i:%i:%i",hours,minutes,seconds] forState:UIControlStateNormal];
   if (timeRemaining==0) {
     [avPlayer play];
-    [timerButton setTitle:[NSString stringWithFormat:@"Timer: %i:00",[[testTimers objectAtIndex:buttonTag] intValue]] forState:UIControlStateNormal];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Example" message:@"Example Timer finished" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [timerButton setTitle:[NSString stringWithFormat:@"Timer: %i:00",[[timers objectAtIndex:buttonTag] intValue]] forState:UIControlStateNormal];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Timer" message:@"Current timer finished" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [timer invalidate];
     timerRunning = FALSE;

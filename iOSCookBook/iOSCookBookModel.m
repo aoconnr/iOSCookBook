@@ -48,13 +48,10 @@
         {
             sqlite3_bind_text(compiledStatement, 1, [r.name UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_int(compiledStatement, 2, r.quantity);
-            //sqlite3_bind_text(compiledStatement, 3, [r.photo UTF8String], -1, SQLITE_TRANSIENT);
             if(imgData != nil){
-              NSLog(@"added");
               sqlite3_bind_blob(compiledStatement, 3, [imgData bytes], [imgData length], NULL);
             }
             else{
-              NSLog(@"NOT");
               sqlite3_bind_blob(compiledStatement, 4, nil, -1, NULL);
             }
             sqlite3_bind_int(compiledStatement, 4, r.favourite);
