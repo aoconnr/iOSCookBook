@@ -115,17 +115,35 @@ int yShiftAfterCategories = 20;
 	imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
 }
 
-//Attempts to save, if valid then directs back to the main menu
+//Attempts to save, if valid, then directs back to the main menu
 -(IBAction)savePressed{
-
-    Recipe *recipe = [[Recipe alloc] initWithName:name.text categories:categories quantity:[servings.text intValue] photo:@"" favourite:0 rating:0 prep: [prepTime.text intValue] cook:[cookTime.text intValue] instructions:instructions ingredients:ingredients] ;
-    [model addRecipe:recipe];
-    instrCounter = 0;
-    ingCounter = 0;
-  //ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
-  [self.navigationController popViewControllerAnimated:TRUE];
-    //TODO: sort out the times and photo filename
-    
+    BOOL save =1;
+    //recipe is not valid without a name
+    if ([categories count] ==0){
+        UILabel *errorLabel = [[UILabel alloc] init];
+        errorLabel.font = [UIFont systemFontOfSize:20];
+        errorLabel.text = @"Please add at least one category";
+        errorLabel.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
+        save = 0;
+    }
+    //recipe is not valid with no categories
+    if (name.text == @"" || name.text == NULL){
+        UILabel *errorLabel = [[UILabel alloc] init];
+        errorLabel.font = [UIFont systemFontOfSize:20];
+        errorLabel.text = @"Please add a name for your recipe";
+        errorLabel.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
+        save = 0;
+    }
+    //if recipe is valid, then it can be saved
+    if (save){
+        Recipe *recipe = [[Recipe alloc] initWithName:name.text categories:categories quantity:[servings.text intValue] photo:@"" favourite:0 rating:0 prep: [prepTime.text intValue] cook:[cookTime.text intValue] instructions:instructions ingredients:ingredients] ;
+        [model addRecipe:recipe];
+        instrCounter = 0;
+        ingCounter = 0;
+        //ViewController *next = [[ViewController alloc] initWithNibName:nil bundle:nil];
+        [self.navigationController popViewControllerAnimated:TRUE];
+        //TODO: sort out the times and photo filename
+    }
 }
 
 //removes last item for ingredient list and updates positions
