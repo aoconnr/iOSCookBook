@@ -20,7 +20,7 @@
     //gets the path for the documents folder on the device
     NSArray *documenPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir = [documenPaths objectAtIndex:0];
-    documentsDir = @"/Users/natalie/Desktop/"; //remove later - currently in for database testing purposes
+    documentsDir = @"/Users/andrew/Desktop/"; //remove later - currently in for database testing purposes
     self.databasePath = [documentsDir stringByAppendingPathComponent:self.databaseName];
     
     
@@ -39,6 +39,8 @@
     sqlite3 *database;
     if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
 
+      UIImage *image1 = r.photo;
+      NSData *imgData = UIImagePNGRepresentation(image1);
         // Add to the recipe table
         const char *addsqlStatement = "INSERT INTO recipes (name, quantity, photo, favourite, rating, prep_time, cook_time) VALUES (?,?,?,?,?,?,?)";
         sqlite3_stmt *compiledStatement;
@@ -48,7 +50,15 @@
             
             sqlite3_bind_text(compiledStatement, 1, [r.name UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_int(compiledStatement, 2, r.quantity);
-            sqlite3_bind_text(compiledStatement, 3, [r.photo UTF8String], -1, SQLITE_TRANSIENT);
+            //sqlite3_bind_text(compiledStatement, 3, [r.photo UTF8String], -1, SQLITE_TRANSIENT);
+            if(imgData != nil){
+              NSLog(@"added");
+              sqlite3_bind_blob(compiledStatement, 3, [imgData bytes], [imgData length], NULL);
+            }
+            else{
+              NSLog(@"NOT");
+              sqlite3_bind_blob(compiledStatement, 4, nil, -1, NULL);
+            }
             sqlite3_bind_int(compiledStatement, 4, r.favourite);
             sqlite3_bind_int(compiledStatement, 5, r.rating);
             sqlite3_bind_int(compiledStatement, 6, r.prepTime);
@@ -176,7 +186,16 @@
                 // recipe details and create a recipe
                 NSString *name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 1)];
                 int quantity = sqlite3_column_int(compiledStatement, 2);
-                NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 3)];
+                //NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 3)];
+              NSData *data = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 3) length:sqlite3_column_bytes(compiledStatement, 3)];
+              UIImage *photo;
+              if(data == nil){
+                NSLog(@"No image found.");
+              photo = [UIImage imageNamed:@"DefaultRecipePic.gif"];
+              }
+              else{
+                photo = [UIImage imageWithData:data];
+              }
                 int favourite = sqlite3_column_int(compiledStatement, 4);
                 int rating = sqlite3_column_int(compiledStatement, 5);
                 int prep = sqlite3_column_int(compiledStatement, 6);
@@ -207,7 +226,16 @@
                 //get r_id
                 NSInteger r_id = sqlite3_column_int(compiledStatement, 1);
                 //get photo name
-                NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 2)];
+                //NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 2)];
+              NSData *data = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 3) length:sqlite3_column_bytes(compiledStatement, 3)];
+              UIImage *photo;
+              if(data == nil){
+                NSLog(@"No image found.");
+                photo = [UIImage imageNamed:@"DefaultRecipePic.gif"];
+              }
+              else{
+                photo = [UIImage imageWithData:data];
+              }
                 //fill array with recipe info
                 NSArray *a = [NSArray arrayWithObjects:name, [NSNumber numberWithInt:r_id], photo, nil];
                 //add array to array to be returned
@@ -248,8 +276,6 @@
     sqlite3_close(database);
     return recipes;
 }
-
-
 
 //takes a photo url/name/string and a recipe id and adds the photo to the recipe in the database
 -(void)addPhoto:(NSString*)s toRecipe:(int)r{

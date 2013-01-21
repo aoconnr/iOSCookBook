@@ -96,7 +96,7 @@ UISwitch *favourite;
 
 -(IBAction)tweet{
   TWTweetComposeViewController *twitter = [[TWTweetComposeViewController alloc] init];
-  [twitter addImage:[UIImage imageNamed:@"DefaultRecipePic.gif"]];
+  [twitter addImage:imageView.image];
   [twitter addURL:[NSURL URLWithString:@"https://twitter.com/"]];
   [twitter setInitialText:@"Sent by iOSCookBook test app"];
   twitter.completionHandler = ^(TWTweetComposeViewControllerResult result) {
@@ -129,7 +129,7 @@ UISwitch *favourite;
   [self.scroller addSubview:name];
   
   imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];
-  imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",recipe.photo]];
+  imageView.image = recipe.photo;
   [self.scroller addSubview:imageView];
   
   servings = [[UILabel alloc] initWithFrame:CGRectMake(5, 140, 97, 30)];

@@ -17,7 +17,7 @@
     if (self) {
         name = @"";
         cookTime = 0;
-        photo = @"";
+        photo = [UIImage imageNamed:@"DefaultRecipePic.gif"];
         prepTime = 0;
         quantity = 0;
         favourite = false;
@@ -30,7 +30,7 @@
     return self;
 }
 
--(id)initWithrId:(int) rid name:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(NSString *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
+-(id)initWithrId:(int) rid name:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(UIImage *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
     self = [super init];
     if (self){
         rId = rid;
@@ -47,7 +47,7 @@
     }
     return self;
 }
--(id)initWithName:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(NSString *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
+-(id)initWithName:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(UIImage *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
     self = [super init];
     if (self){
         name = n;
