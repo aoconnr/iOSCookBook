@@ -36,6 +36,9 @@
 		49F9B7DB16A9FE980067B7FB /* BrowseRecipesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F9B7D916A9FE980067B7FB /* BrowseRecipesViewController.xib */; };
 		49F9B7DF16AAA9720067B7FB /* BrowseFavouritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49F9B7DD16AAA9720067B7FB /* BrowseFavouritesViewController.m */; };
 		49F9B7E016AAA9720067B7FB /* BrowseFavouritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49F9B7DE16AAA9720067B7FB /* BrowseFavouritesViewController.xib */; };
+		E0B3BB3716ACB0F000D6A78C /* StarEmpty.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B3BB2F16ACB0F000D6A78C /* StarEmpty.png */; };
+		E0B3BB3B16ACB0F000D6A78C /* StarFull.png in Resources */ = {isa = PBXBuildFile; fileRef = E0B3BB3316ACB0F000D6A78C /* StarFull.png */; };
+		E0B3BB4616ACB82100D6A78C /* DYRateView.m in Sources */ = {isa = PBXBuildFile; fileRef = E0B3BB4516ACB82100D6A78C /* DYRateView.m */; };
 		E0CBEBCD16A37111003A67F5 /* cookbook.sql in Resources */ = {isa = PBXBuildFile; fileRef = E0CBEBCC16A37111003A67F5 /* cookbook.sql */; };
 		E0CBEBD316A37126003A67F5 /* iOSCookBookModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */; };
 		E0CBEBD416A37126003A67F5 /* Recipe.m in Sources */ = {isa = PBXBuildFile; fileRef = E0CBEBD216A37126003A67F5 /* Recipe.m */; };
@@ -96,6 +99,10 @@
 		49F9B7DC16AAA9720067B7FB /* BrowseFavouritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowseFavouritesViewController.h; sourceTree = "<group>"; };
 		49F9B7DD16AAA9720067B7FB /* BrowseFavouritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowseFavouritesViewController.m; sourceTree = "<group>"; };
 		49F9B7DE16AAA9720067B7FB /* BrowseFavouritesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrowseFavouritesViewController.xib; sourceTree = "<group>"; };
+		E0B3BB2F16ACB0F000D6A78C /* StarEmpty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarEmpty.png; sourceTree = "<group>"; };
+		E0B3BB3316ACB0F000D6A78C /* StarFull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarFull.png; sourceTree = "<group>"; };
+		E0B3BB4416ACB82000D6A78C /* DYRateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYRateView.h; sourceTree = "<group>"; };
+		E0B3BB4516ACB82100D6A78C /* DYRateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYRateView.m; sourceTree = "<group>"; };
 		E0CBEBCC16A37111003A67F5 /* cookbook.sql */ = {isa = PBXFileReference; lastKnownFileType = file; path = cookbook.sql; sourceTree = "<group>"; };
 		E0CBEBCF16A37126003A67F5 /* iOSCookBookModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSCookBookModel.h; sourceTree = "<group>"; };
 		E0CBEBD016A37126003A67F5 /* iOSCookBookModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSCookBookModel.m; sourceTree = "<group>"; };
@@ -175,6 +182,8 @@
 				4991B39E16A01A9900A005AF /* AppDelegate.h */,
 				4991B39F16A01A9900A005AF /* AppDelegate.m */,
 				4991B3A716A01A9900A005AF /* ViewController.h */,
+				E0B3BB4416ACB82000D6A78C /* DYRateView.h */,
+				E0B3BB4516ACB82100D6A78C /* DYRateView.m */,
 				4991B3AA16A01A9900A005AF /* ViewController.xib */,
 				4991B3A816A01A9900A005AF /* ViewController.m */,
 				4991B3AA16A01A9900A005AF /* ViewController.xib */,
@@ -215,6 +224,8 @@
 		4991B39616A01A9900A005AF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E0B3BB2F16ACB0F000D6A78C /* StarEmpty.png */,
+				E0B3BB3316ACB0F000D6A78C /* StarFull.png */,
 				4991B3A516A01A9900A005AF /* Default-568h@2x.png */,
 				E0CBEBCC16A37111003A67F5 /* cookbook.sql */,
 				4991B39716A01A9900A005AF /* iOSCookBook-Info.plist */,
@@ -329,6 +340,8 @@
 				49F9B7D616A9CFBB0067B7FB /* BrowseCategoriesViewController.xib in Resources */,
 				49F9B7DB16A9FE980067B7FB /* BrowseRecipesViewController.xib in Resources */,
 				49F9B7E016AAA9720067B7FB /* BrowseFavouritesViewController.xib in Resources */,
+				E0B3BB3716ACB0F000D6A78C /* StarEmpty.png in Resources */,
+				E0B3BB3B16ACB0F000D6A78C /* StarFull.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +388,7 @@
 				49F9B7D516A9CFBB0067B7FB /* BrowseCategoriesViewController.m in Sources */,
 				49F9B7DA16A9FE980067B7FB /* BrowseRecipesViewController.m in Sources */,
 				49F9B7DF16AAA9720067B7FB /* BrowseFavouritesViewController.m in Sources */,
+				E0B3BB4616ACB82100D6A78C /* DYRateView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

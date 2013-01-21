@@ -12,6 +12,8 @@
 
 @synthesize name, rId, categories, cookTime, photo, prepTime, quantity, favourite, rating, ingredients, instructions;
 
+
+//initalise the recipe with empty values
 -(id)init{
     self = [super init];
     if (self) {
@@ -63,4 +65,6 @@
     }
     return self;
 }
+
+
 @end

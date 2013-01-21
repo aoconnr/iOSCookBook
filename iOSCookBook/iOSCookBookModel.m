@@ -23,7 +23,6 @@
     documentsDir = @"/Users/andrew/Desktop/"; //remove later - currently in for database testing purposes
     self.databasePath = [documentsDir stringByAppendingPathComponent:self.databaseName];
     
-    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     //if the database doesn't already exist in the documents folder on the device, copy it there.
     if (![fileManager fileExistsAtPath:self.databasePath]){
@@ -47,7 +46,6 @@
         int row;
         if (sqlite3_prepare_v2(database, addsqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK)
         {
-            
             sqlite3_bind_text(compiledStatement, 1, [r.name UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_int(compiledStatement, 2, r.quantity);
             //sqlite3_bind_text(compiledStatement, 3, [r.photo UTF8String], -1, SQLITE_TRANSIENT);
@@ -183,7 +181,7 @@
             sqlite3_bind_int(compiledStatement, 1, n);
             while (sqlite3_step(compiledStatement) == SQLITE_ROW){
                 
-                // recipe details and create a recipe
+                // gets recipe details and creates a recipe
                 NSString *name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 1)];
                 int quantity = sqlite3_column_int(compiledStatement, 2);
                 //NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 3)];
@@ -240,7 +238,6 @@
                 NSArray *a = [NSArray arrayWithObjects:name, [NSNumber numberWithInt:r_id], photo, nil];
                 //add array to array to be returned
                 [recipes addObject:a];
-               // sqlite3_reset(compiledStatement);
             }
         }
         sqlite3_finalize(compiledStatement);
@@ -255,6 +252,7 @@
     sqlite3 *database;
     if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
         
+        // find recipes in given category
         const char *sqlStatement = "SELECT recipes.name, recipes.r_id, photo FROM recipes JOIN categories ON recipes.r_id=categories.r_id WHERE categories.name = ?";
         sqlite3_stmt *compiledStatement;
         if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
@@ -290,7 +288,6 @@
             sqlite3_bind_text(compiledStatement, 1, [s UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_int(compiledStatement, 2, r);
             sqlite3_step(compiledStatement);
-            sqlite3_reset(compiledStatement);
         }
         sqlite3_finalize(compiledStatement);
     }
@@ -298,11 +295,9 @@
 }
 
 
-
-
 //returns a list of all the category names in the db
 -(NSMutableArray*)getCategories{
-    NSMutableArray *recipes = [NSMutableArray new];
+    NSMutableArray *categories = [NSMutableArray new];
     sqlite3 *database;
     if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
         const char *sqlStatement = "SELECT DISTINCT name FROM categories ORDER BY name";
@@ -311,16 +306,15 @@
         if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
             while (sqlite3_step(compiledStatement) == SQLITE_ROW){
 
-                //get recipe name
+                //get category name
                 NSString *name = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 0)];
-                [recipes addObject:name];
-                //sqlite3_reset(compiledStatement);
+                [categories addObject:name];
             }
         }
         sqlite3_finalize(compiledStatement);
     }
     sqlite3_close(database);
-    return recipes;
+    return categories;
 }
 
 //takes a recipe id and removes all references of the recipe with that id from the database.
@@ -383,5 +377,22 @@
         sqlite3_finalize(compiledStatement);
     }
     sqlite3_close(database);    
+}
+
+//takes a recipe id and a rating integer from 0-5 and sets the rating attribute in the database of the recipe to given value
+-(void)setRatingForRecipeID:(int)rid to:(int)r{
+    sqlite3 *database;
+    if (sqlite3_open([databasePath UTF8String], &database)==SQLITE_OK){
+        const char *sqlStatement = "UPDATE recipes SET rating=? WHERE r_id=?";
+        sqlite3_stmt *compiledStatement;
+        
+        if (sqlite3_prepare_v2(database, sqlStatement, -1, &compiledStatement, NULL) == SQLITE_OK){
+            sqlite3_bind_int(compiledStatement, 1, r);
+            sqlite3_bind_int(compiledStatement, 2, rid);
+            sqlite3_step(compiledStatement);
+        }
+        sqlite3_finalize(compiledStatement);
+    }
+    sqlite3_close(database);
 }
 @end

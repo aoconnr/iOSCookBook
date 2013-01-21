@@ -7,7 +7,6 @@
 //
 
 #import "BrowseRecipesViewController.h"
-#import "RecipeViewController.h"
 
 @interface BrowseRecipesViewController ()
 
@@ -69,6 +68,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    //delete the selected recipe
     NSArray *rec = [tableViewData objectAtIndex:indexPath.row];
     int selected = [[rec objectAtIndex:1] intValue];
     [tableViewData removeObjectAtIndex:indexPath.row];
@@ -83,7 +83,6 @@ didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)viewDidLoad
 {
   [super viewDidLoad];
-  // Do any additional setup after loading the view from its nib.
     
     tableViewData = recipeList;
 
@@ -92,12 +91,7 @@ didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
-
-//-(void)setRecipesForDisplay:(NSMutableArray*)recipes{
-//    recipeList = recipes;
-//}
 
 
 @end
