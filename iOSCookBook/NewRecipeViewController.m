@@ -7,11 +7,7 @@
 //
 
 #import "NewRecipeViewController.h"
-#import "ViewController.h"
-#import "iOSCookBookModel.h"
-#import "Recipe.h"
-#import "ingredient.h"
-#import "instruction.h"
+
 
 @interface NewRecipeViewController ()
 
@@ -88,8 +84,7 @@ int yShiftAfterCategories = 20;
   if ([catInput.text length] > 0) {
     catList.text = [[catList.text stringByAppendingString:catInput.text] stringByAppendingString:@"\n"];
     yShiftAfterCategories += 15;
-    [categories addObject:catInput.text];
-  
+      [categories addObject:catInput.text];
     [self updatePositions];
       catInput.text = @"";
   }
@@ -120,7 +115,7 @@ int yShiftAfterCategories = 20;
 	imageView.image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
 }
 
-//Attempts to save, if valid then directs to the page of the newly created recipe
+//Attempts to save, if valid then directs back to the main menu
 -(IBAction)savePressed{
 
     Recipe *recipe = [[Recipe alloc] initWithName:name.text categories:categories quantity:[servings.text intValue] photo:@"" favourite:0 rating:0 prep: [prepTime.text intValue] cook:[cookTime.text intValue] instructions:instructions ingredients:ingredients] ;

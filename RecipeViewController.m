@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "ingredient.h"
 #import "instruction.h"
+#import "DYRateView.h"
 
 
 @interface RecipeViewController (){
@@ -101,10 +102,13 @@ UISwitch *favourite;
   name.text = [NSString stringWithFormat:@"%@",recipe.name];
   [self.scroller addSubview:name];
   
+    
+    //TODO: Set image
   imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];
   imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@",recipe.photo]];
   [self.scroller addSubview:imageView];
-  
+                    
+                            
   servings = [[UILabel alloc] initWithFrame:CGRectMake(5, 140, 97, 30)];
   servings.text = [NSString stringWithFormat:@"Serves: %i",recipe.quantity];
   servings.font = [UIFont systemFontOfSize:15];
@@ -189,18 +193,31 @@ UISwitch *favourite;
       catList.scrollEnabled = FALSE;
       catList.text = c;
       [self.scroller addSubview:catList];
+        y_plot +=20;
     }
     
+    //add the rating stars to the view
+    DYRateView *rateView = [[DYRateView alloc] initWithFrame:CGRectMake(5, y_plot+140, 100, 14)];
+    rateView.rate = recipe.rating;
+    rateView.alignment=RateViewAlignmentLeft;
+    rateView.editable=YES;
+    rateView.delegate=self;
+    [self.scroller addSubview:rateView];
+    
+    
+    //Add a label to explain the favourites switch
     favLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, y_plot+200, 200, 30)];
     favLabel.font = [UIFont systemFontOfSize:18];
     favLabel.text = @"Set as a favourite recipe:";
     [self.scroller addSubview:favLabel];
     
+    //Add the favourites switch to the view
     favourite = [[UISwitch alloc] initWithFrame:CGRectMake(230, y_plot +200, 0, 0)];
     [favourite setOn:recipe.favourite];
     [favourite addTarget:self action:@selector(setFavourite:) forControlEvents:UIControlEventValueChanged];
-    
     [self.scroller addSubview:favourite];
+    
+    
     [self.scroller setContentSize:CGSizeMake(320, y_plot+250)];
   
   
@@ -215,6 +232,7 @@ UISwitch *favourite;
 }
 
 
+//when the 'favourites' swtich is toggled, call the model method to set the favourites value in the db
 -(void)setFavourite:(id)sender{
     
     if (favourite.on){
@@ -223,9 +241,15 @@ UISwitch *favourite;
     else {
         [model setFavouriteForRecipeID:recipe.rId to:0];
     }
-    
-    
 }
+
+
+//When the rating stars are changed, call the model to save the new rating
+-(void)rateView:(DYRateView *)rateView changedToNewRate:(NSNumber *)rate {
+    
+    [model setRatingForRecipeID:recipe.rId to:[rate intValue]];
+}
+
 
 
 - (void)didReceiveMemoryWarning

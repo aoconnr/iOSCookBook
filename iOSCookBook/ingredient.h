@@ -5,6 +5,7 @@
 //  Created by Natalie on 15/01/2013.
 //  Copyright (c) 2013 Andrew O'Connor. All rights reserved.
 //
+// Represents an ingredient including its name and ordering
 
 #import <Foundation/Foundation.h>
 

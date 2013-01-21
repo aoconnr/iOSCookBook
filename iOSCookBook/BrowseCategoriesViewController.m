@@ -21,10 +21,10 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
         
+        //get the category data to be displayed from the model
         model = [iOSCookBookModel new];
-        tableViewData = [model getCategories];
+        tableViewData = [model getCategories];  
 
       self.title = @"Categories";
     }
@@ -52,13 +52,14 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-  BrowseRecipesViewController *secondView = [[BrowseRecipesViewController alloc] initWithNibName:@"BrowseRecipesViewController" bundle:nil];
-  //secondView.rowSelectedPreviously = indexPath.row;
+    BrowseRecipesViewController *secondView = [[BrowseRecipesViewController alloc] initWithNibName:@"BrowseRecipesViewController" bundle:nil];
+    //get the category name of the selected row
     NSString *category = [tableViewData objectAtIndex:indexPath.row];
+    //get the array of recipes within that category and pass it to the next view
     NSMutableArray *r = [model getRecipesByCategory:category];
     secondView.title = category;
-  secondView.recipeList = r;
-  [self.navigationController pushViewController:secondView animated:TRUE];
+    secondView.recipeList = r;
+    [self.navigationController pushViewController:secondView animated:TRUE];
 }
 
 - (void)viewDidLoad

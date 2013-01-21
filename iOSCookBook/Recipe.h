@@ -17,13 +17,14 @@
 @property (strong) NSMutableArray *categories;
 @property (assign) NSInteger quantity;
 @property (assign) BOOL favourite;
-@property (assign) NSInteger rating;
-@property (assign) NSInteger prepTime;
-@property (assign) NSInteger cookTime;
+@property (assign) int rating;
+@property (assign) int prepTime;
+@property (assign) int cookTime;
 @property (strong) NSMutableArray *ingredients;
 @property (strong) NSMutableArray *instructions;
 
+-(id)initWithrId:(int) rid name:(NSString*)n categories:(NSMutableArray*)c quantity:(int)q photo:(NSString*)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray*)ins ingredients:(NSMutableArray*)ing;
 -(id)initWithName:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(NSString *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing;
 
--(id)initWithrId:(int) rid name:(NSString*)n categories:(NSMutableArray*)c quantity:(int)q photo:(NSString*)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray*)ins ingredients:(NSMutableArray*)ing;
+
 @end

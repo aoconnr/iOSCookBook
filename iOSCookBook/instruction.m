@@ -12,6 +12,7 @@
 
 @synthesize name, order, timer;
 
+//initialises the instruction to the given values
 -(id)initWithInstruction:(NSString *)i order:(int)o timer:(int)t{
     self = [super init];
     if (self){

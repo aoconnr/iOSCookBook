@@ -11,7 +11,7 @@
 @implementation ingredient
 @synthesize name, order;
 
-
+//initialises the ingredient to the given values 
 -(id)initWithIngredient:(NSString *)i order:(int)o{
     self = [super init];
     if (self){

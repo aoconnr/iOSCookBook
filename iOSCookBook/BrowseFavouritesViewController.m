@@ -7,7 +7,6 @@
 //
 
 #import "BrowseFavouritesViewController.h"
-#import "RecipeViewController.h"
 
 @interface BrowseFavouritesViewController ()
 
@@ -20,10 +19,11 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-      self.title = @"Favourites";
+
+        self.title = @"Favourites";
+        //Get the recipes from the model which have been set as favourites
         model = [[iOSCookBookModel alloc] init];
-      tableViewData = [model getFavourites];
+        tableViewData = [model getFavourites];
     }
     return self;
 }
@@ -45,6 +45,7 @@
   
   cell.textLabel.text = [tableViewData objectAtIndex:indexPath.row][0];
   
+  //TODO: Add correct images here
   UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
   imgView.image = [UIImage imageNamed:@"DefaultRecipePic.gif"];
   cell.imageView.image = imgView.image;
@@ -53,8 +54,8 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     //get the selected row's recipe id
-
     NSArray *rec = [tableViewData objectAtIndex:indexPath.row];
     int selected = [[rec objectAtIndex:1] intValue];
     RecipeViewController *thirdView = [[RecipeViewController alloc] initWithNibName:@"RecipeViewController" bundle:nil];
@@ -81,13 +82,11 @@ didEndEditingRowAtIndexPath:(NSIndexPath *)indexPath {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

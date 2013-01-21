@@ -12,6 +12,8 @@
 
 @synthesize name, rId, categories, cookTime, photo, prepTime, quantity, favourite, rating, ingredients, instructions;
 
+
+//initalise the recipe with empty values
 -(id)init{
     self = [super init];
     if (self) {
@@ -30,6 +32,7 @@
     return self;
 }
 
+//initialise to the given values
 -(id)initWithrId:(int) rid name:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(NSString *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
     self = [super init];
     if (self){
@@ -47,6 +50,8 @@
     }
     return self;
 }
+
+//initilize with given values, when no recipe id is available
 -(id)initWithName:(NSString *)n categories:(NSMutableArray *)c quantity:(int)q photo:(NSString *)p favourite:(int)f rating:(int)r prep:(int)prep cook:(int)cook instructions:(NSMutableArray *)ins ingredients:(NSMutableArray *)ing{
     self = [super init];
     if (self){
@@ -63,4 +68,6 @@
     }
     return self;
 }
+
+
 @end
