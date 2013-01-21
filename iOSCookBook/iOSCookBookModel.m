@@ -221,7 +221,7 @@
                 //get r_id
                 NSInteger r_id = sqlite3_column_int(compiledStatement, 1);
                 //get photo
-              NSData *data = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 3) length:sqlite3_column_bytes(compiledStatement, 3)];
+              NSData *data = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 2) length:sqlite3_column_bytes(compiledStatement, 2)];
               UIImage *photo;
               if(data == nil){
                 NSLog(@"No image found.");
@@ -260,7 +260,15 @@
                 //get r_id                
                 int r_id = sqlite3_column_int(compiledStatement, 1);
                 //get photo
-                NSString *photo = [NSString stringWithUTF8String:(char*)sqlite3_column_text(compiledStatement, 2)];
+                NSData *data = [[NSData alloc] initWithBytes:sqlite3_column_blob(compiledStatement, 2) length:sqlite3_column_bytes(compiledStatement, 2)];
+                UIImage *photo;
+                if(data == nil){
+                  NSLog(@"No image found.");
+                  photo = [UIImage imageNamed:@"DefaultRecipePic.gif"];
+                }
+                else{
+                  photo = [UIImage imageWithData:data];
+                }
                 NSArray *a = [NSArray arrayWithObjects:name, [NSNumber numberWithInt:r_id], photo, nil];
                 [recipes addObject:a];
             }
