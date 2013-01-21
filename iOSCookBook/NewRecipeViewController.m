@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Andrew O'Connor. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "NewRecipeViewController.h"
 
 
@@ -17,9 +19,9 @@
 @implementation NewRecipeViewController
 
 iOSCookBookModel *model;
-UITextField *name, *servings, *prepTime, *cookTime, *ingredInput, *instrInput, *catInput, *timerInput;
-UITextView *ingredList, *instrList, *catList;
-UILabel *ingredLabel, *instrLabel, *catLabel;
+UITextField *name, *servings, *prepTime, *cookTime, *catInput, *timerInput;
+UITextView *ingredList, *instrList, *catList, *ingredInput, *instrInput;
+UILabel *ingredLabel, *instrLabel, *catLabel, *timerLabel;
 UIButton *addIngredButton, *addInstrButton, *catButton, *saveButton, *addPhotoButton, *takePhotoButton, *undoIngredButton, *undoInstrButton, *undoCatButton;
 UIImageView *imageView;
 
@@ -126,7 +128,6 @@ int yShiftAfterCategories = 20;
         UILabel *errorLabel = [[UILabel alloc] init];
         errorLabel.font = [UIFont systemFontOfSize:20];
         errorLabel.text = @"Please add at least one category";
-        errorLabel.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
         save = 0;
     }
     //recipe is not valid with no categories
@@ -134,7 +135,6 @@ int yShiftAfterCategories = 20;
         UILabel *errorLabel = [[UILabel alloc] init];
         errorLabel.font = [UIFont systemFontOfSize:20];
         errorLabel.text = @"Please add a name for your recipe";
-        errorLabel.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
         save = 0;
     }
     //if recipe is valid, then it can be saved
@@ -212,27 +212,26 @@ int yShiftAfterCategories = 20;
 //shifts positions keep page format with longer lists
 -(void)updatePositions{
   ingredList.frame = CGRectMake(5, 215, 300, yShiftAfterIngredients);
-  ingredInput.frame = CGRectMake(5, (250+yShiftAfterIngredients), 120, 30);
-  addIngredButton.frame = CGRectMake(150, (250+yShiftAfterIngredients), 30, 30);
-  undoIngredButton.frame = CGRectMake(200, (250+yShiftAfterIngredients), 50, 30);
+  ingredInput.frame = CGRectMake(5, (240+yShiftAfterIngredients), 205, 30);
+  addIngredButton.frame = CGRectMake(220, (240+yShiftAfterIngredients), 30, 30);
+  undoIngredButton.frame = CGRectMake(260, (240+yShiftAfterIngredients), 50, 30);
   instrLabel.frame = CGRectMake(5, (290+yShiftAfterIngredients), 150, 30);
   instrList.frame = CGRectMake(5, (330+yShiftAfterIngredients), 250, yShiftAfterInstructions);
   
   int combinedYShift = yShiftAfterIngredients + yShiftAfterInstructions;
-  instrInput.frame = CGRectMake(5, (370+combinedYShift), 120, 30);
-  timerInput.frame = CGRectMake(130, (370+combinedYShift), 75, 30);
-  addInstrButton.frame = CGRectMake(210, (370+combinedYShift), 30, 30);
-  undoInstrButton.frame = CGRectMake(250, (370+combinedYShift), 50, 30);
-  catLabel.frame = CGRectMake(5, (410+combinedYShift), 150, 30);
-  catList.frame = CGRectMake(5, (450+combinedYShift), 250, yShiftAfterCategories);
+  instrInput.frame = CGRectMake(5, (360+combinedYShift), 205, 30);
+  timerLabel.frame = CGRectMake(5, 390+combinedYShift, 205, 30);
+  timerInput.frame = CGRectMake(130, (400+combinedYShift), 75, 30);
+  addInstrButton.frame = CGRectMake(220, (360+combinedYShift), 30, 30);
+  undoInstrButton.frame = CGRectMake(260, (360+combinedYShift), 50, 30);
+  catLabel.frame = CGRectMake(5, (450+combinedYShift), 150, 30);
+  catList.frame = CGRectMake(5, (480+combinedYShift), 250, yShiftAfterCategories);
   
   combinedYShift = combinedYShift + yShiftAfterCategories;
-  catInput.frame = CGRectMake(5, (480+combinedYShift), 120, 30);
-  catButton.frame = CGRectMake(150, (480+combinedYShift), 30, 30);
-  undoCatButton.frame = CGRectMake(200, (480+combinedYShift), 50, 30);
-  addPhotoButton.frame = CGRectMake(5, (520+combinedYShift), 100, 30);
-  takePhotoButton.frame = CGRectMake(4, (560+combinedYShift), 100, 30);
-  saveButton.frame = CGRectMake(210, (560+combinedYShift), 100, 30);
+  catInput.frame = CGRectMake(5, (510+combinedYShift), 205, 30);
+  catButton.frame = CGRectMake(220, (510+combinedYShift), 30, 30);
+  undoCatButton.frame = CGRectMake(260, (510+combinedYShift), 50, 30);
+  saveButton.frame = CGRectMake(105, (560+combinedYShift), 100, 30);
   
   //increases the size of the max scroll height based off list items
   self.scroller.contentSize = CGSizeMake(320, (600+combinedYShift));
@@ -263,17 +262,31 @@ int yShiftAfterCategories = 20;
     // Do any additional setup after loading the view from its nib.
   
   [self.scroller setScrollEnabled:TRUE];
-  self.scroller.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
-  
-  name = [[UITextField alloc] initWithFrame:CGRectMake(100, 5, 110, 30)];
+  self.scroller.backgroundColor = [UIColor whiteColor];
+  //CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
+  name = [[UITextField alloc] initWithFrame:CGRectMake(120, 5, 190, 30)];
   [self defaultTextFieldValues:name];
   name.placeholder = @"Recipe Name";
   [self.scroller addSubview:name];
   
-  imageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 40, 100, 100)];
+  imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 5, 100, 100)];
   imageView.backgroundColor = [UIColor orangeColor];
   imageView.image = [UIImage imageNamed:@"DefaultRecipePic.gif"];
   [self.scroller addSubview:imageView];
+    
+    addPhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [addPhotoButton addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchDown];
+    [addPhotoButton setTitle:@"Add Photo" forState:UIControlStateNormal];
+    addPhotoButton.frame = CGRectMake(120, 45, 100, 30);
+    [addPhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.scroller addSubview:addPhotoButton];
+    
+    takePhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [takePhotoButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchDown];
+    [takePhotoButton setTitle:@"Take Photo" forState:UIControlStateNormal];
+    takePhotoButton.frame = CGRectMake(120, 85, 100, 30);
+    [takePhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.scroller addSubview:takePhotoButton];
   
   servings = [[UITextField alloc] initWithFrame:CGRectMake(5, 150, 97, 30)];
   [self defaultTextFieldValues:servings];
@@ -295,55 +308,62 @@ int yShiftAfterCategories = 20;
   
   ingredLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 185, 150, 30)];
   ingredLabel.font = [UIFont systemFontOfSize:20];
-  ingredLabel.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
   ingredLabel.text = @"Ingredients";
   [self.scroller addSubview:ingredLabel];
   
-  ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 215, 300, 30)];
+  ingredList = [[UITextView alloc] initWithFrame:CGRectMake(5, 215, 300, 20)];
   ingredList.editable = FALSE;
   ingredList.scrollEnabled = FALSE;
-  ingredList.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
   [self.scroller addSubview:ingredList];
   
-  ingredInput = [[UITextField alloc] initWithFrame:CGRectMake(5, 250, 120, 30)];
-  [self defaultTextFieldValues:ingredInput];
-  ingredInput.placeholder = @"Ingredient";
+  ingredInput = [[UITextView alloc] initWithFrame:CGRectMake(5, 240, 205, 30)];
+  [ingredInput.layer setBorderColor:[[[UIColor grayColor]colorWithAlphaComponent:0.5] CGColor]];
+  [ingredInput.layer setBorderWidth:2.0];
+  [ingredInput.layer setCornerRadius:8.0f];
+  [ingredInput.layer setMasksToBounds:YES];
   [self.scroller addSubview:ingredInput];
   
   addIngredButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [addIngredButton addTarget:self action:@selector(addIngredient) forControlEvents:UIControlEventTouchDown];
   [addIngredButton setTitle:@"+" forState:UIControlStateNormal];
   [addIngredButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  addIngredButton.frame = CGRectMake(150, 250, 30, 30);
+  addIngredButton.frame = CGRectMake(220, 240, 30, 30);
   [self.scroller addSubview:addIngredButton];
   
   undoIngredButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [undoIngredButton addTarget:self action:@selector(undoIngredList) forControlEvents:UIControlEventTouchDown];
   [undoIngredButton setTitle:@"Undo" forState:UIControlStateNormal];
   [undoIngredButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  undoIngredButton.frame = CGRectMake(200, 250, 50, 30);
+  undoIngredButton.frame = CGRectMake(260, 240, 50, 30);
   [self.scroller addSubview:undoIngredButton];
   
   
   instrLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 290, 150, 30)];
   instrLabel.font = [UIFont systemFontOfSize:20];
   instrLabel.text = @"Instructions";
-  instrLabel.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
   [self.scroller addSubview:instrLabel];
   
   //TODO: add timer button to each line
-  instrList = [[UITextView alloc] initWithFrame:CGRectMake(5, 330, 250, 30)];
+  instrList = [[UITextView alloc] initWithFrame:CGRectMake(5, 330, 250, 20)];
   instrList.editable = FALSE;
   instrList.scrollEnabled = FALSE;
-  instrList.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
   [self.scroller addSubview:instrList];
   
-  instrInput = [[UITextField alloc] initWithFrame:CGRectMake(5, 370, 120, 30)];
-  [self defaultTextFieldValues:instrInput];
-  instrInput.placeholder = @"Instruction";
+   instrInput = [[UITextView alloc] initWithFrame:CGRectMake(5, 360, 205, 30)];
+    [instrInput.layer setBorderColor:[[[UIColor grayColor]colorWithAlphaComponent:0.5] CGColor]];
+    [instrInput.layer setBorderWidth:2.0];
+    [instrInput.layer setCornerRadius:8.0f];
+    [instrInput.layer setMasksToBounds:YES];
+   //[self defaultTextFieldValues:instrInput];
+  //instrInput.placeholder = @"Instruction";
   [self.scroller addSubview:instrInput];
   
-  timerInput = [[UITextField alloc] initWithFrame:CGRectMake(130, 370, 75, 30)];
+    timerLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 390, 200, 50)];
+    timerLabel.font = [UIFont systemFontOfSize:15];
+    timerLabel.text = @"Instruction timer:";
+    [self.scroller addSubview:timerLabel];
+    
+  timerInput = [[UITextField alloc] initWithFrame:CGRectMake(130, 400, 75, 30)];
   [self defaultTextFieldValues:timerInput];
   timerInput.placeholder = @"minutes";
   timerInput.keyboardType = UIKeyboardTypeDecimalPad;
@@ -353,29 +373,27 @@ int yShiftAfterCategories = 20;
   [addInstrButton addTarget:self action:@selector(addInstruction) forControlEvents:UIControlEventTouchDown];
   [addInstrButton setTitle:@"+" forState:UIControlStateNormal];
   [addInstrButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  addInstrButton.frame = CGRectMake(210, 370, 30, 30);
+  addInstrButton.frame = CGRectMake(220, 360, 30, 30);
   [self.scroller addSubview:addInstrButton];
   
   undoInstrButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [undoInstrButton addTarget:self action:@selector(undoInstrList) forControlEvents:UIControlEventTouchDown];
   [undoInstrButton setTitle:@"Undo" forState:UIControlStateNormal];
   [undoInstrButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  undoInstrButton.frame = CGRectMake(250, 370, 50, 30);
+  undoInstrButton.frame = CGRectMake(260, 360, 50, 30);
   [self.scroller addSubview:undoInstrButton];
   
-  catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 410, 150, 30)];
+  catLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 450, 150, 30)];
   catLabel.font = [UIFont systemFontOfSize:20];
   catLabel.text = @"Categories";
-  catLabel.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
   [self.scroller addSubview:catLabel];
   
-  catList = [[UITextView alloc] initWithFrame:CGRectMake(5, 450, 250, 30)];
+  catList = [[UITextView alloc] initWithFrame:CGRectMake(5, 480, 250, 30)];
   catList.editable = FALSE;
   catList.scrollEnabled = FALSE;
-  catList.backgroundColor = [UIColor colorWithRed:200.0f/255.0f green:200.0f/255.0f blue:200.0f/255.0f alpha:1.0f];
   [self.scroller addSubview:catList];
   
-  catInput = [[UITextField alloc] initWithFrame:CGRectMake(5, 480, 120, 30)];
+  catInput = [[UITextField alloc] initWithFrame:CGRectMake(5, 510, 205, 30)];
   [self defaultTextFieldValues:catInput];
   catInput.placeholder = @"Category";
   [self.scroller addSubview:catInput];
@@ -383,7 +401,7 @@ int yShiftAfterCategories = 20;
   catButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [catButton addTarget:self action:@selector(addCategory) forControlEvents:UIControlEventTouchDown];
   [catButton setTitle:@"+" forState:UIControlStateNormal];
-  catButton.frame = CGRectMake(150, 480, 30, 30);
+  catButton.frame = CGRectMake(220, 510, 30, 30);
   [catButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
   [self.scroller addSubview:catButton];
   
@@ -391,28 +409,14 @@ int yShiftAfterCategories = 20;
   [undoCatButton addTarget:self action:@selector(undoCatList) forControlEvents:UIControlEventTouchDown];
   [undoCatButton setTitle:@"Undo" forState:UIControlStateNormal];
   [undoCatButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  undoCatButton.frame = CGRectMake(200, 480, 50, 30);
+  undoCatButton.frame = CGRectMake(260, 510, 50, 30);
   [self.scroller addSubview:undoCatButton];
-  
-  addPhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  [addPhotoButton addTarget:self action:@selector(addPhoto) forControlEvents:UIControlEventTouchDown];
-  [addPhotoButton setTitle:@"Add Photo" forState:UIControlStateNormal];
-  addPhotoButton.frame = CGRectMake(5, 520, 100, 30);
-  [addPhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [self.scroller addSubview:addPhotoButton];
-  
-  takePhotoButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-  [takePhotoButton addTarget:self action:@selector(takePhoto) forControlEvents:UIControlEventTouchDown];
-  [takePhotoButton setTitle:@"Take Photo" forState:UIControlStateNormal];
-  takePhotoButton.frame = CGRectMake(5, 560, 100, 30);
-  [takePhotoButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  [self.scroller addSubview:takePhotoButton];
   
   saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
   [saveButton addTarget:self action:@selector(savePressed) forControlEvents:UIControlEventTouchDown];
   [saveButton setTitle:@"Save Recipe" forState:UIControlStateNormal];
   [saveButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-  saveButton.frame = CGRectMake(210, 560, 100, 30);
+  saveButton.frame = CGRectMake(105, 560, 100, 30);
   [self.scroller addSubview:saveButton];
   
   [self.scroller setContentSize:CGSizeMake(320, 600)];

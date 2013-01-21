@@ -22,12 +22,9 @@
   [self.navigationController pushViewController:nextView animated:TRUE];
 }
 
-//Temp directs to a view recipe page
 -(IBAction)favouriteButton:(id)sender{
   BrowseFavouritesViewController *nextView = [[BrowseFavouritesViewController alloc] initWithNibName:@"BrowseFavouritesViewController" bundle:nil];
   [self.navigationController pushViewController:nextView animated:TRUE];
-//  RecipeViewController *next = [[RecipeViewController alloc] initWithNibName:nil bundle:nil];
-//  [self presentViewController:next animated:TRUE completion:nil];
 }
 
 -(IBAction)browseButton:(id)sender{
@@ -39,7 +36,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-  
+    self.view.backgroundColor = [UIColor whiteColor];
   self.title = @"Main Menu";
   [self.navigationController.navigationBar setTintColor:[UIColor blackColor]];
 }
