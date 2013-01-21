@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import <Twitter/Twitter.h>
 #import "Recipe.h"
 #import "iOSCookBookModel.h"
 #import "DYRateView.h"
@@ -22,5 +23,5 @@
 @property (strong, nonatomic) iOSCookBookModel *model;
 
 -(void)setFavourite:(id)sender;
-
+-(IBAction)tweet;
 @end

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4940265116A859E100A2B400 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4940265016A859E100A2B400 /* AVFoundation.framework */; };
 		4940265416A85B2A00A2B400 /* alarmclock.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4940265316A85B2A00A2B400 /* alarmclock.mp3 */; };
+		4968C22C16ACD9BB001A039A /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4968C22B16ACD9BB001A039A /* Twitter.framework */; };
 		4991B39016A01A9900A005AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B38F16A01A9900A005AF /* UIKit.framework */; };
 		4991B39216A01A9900A005AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B39116A01A9900A005AF /* Foundation.framework */; };
 		4991B39416A01A9900A005AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4991B39316A01A9900A005AF /* CoreGraphics.framework */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		4940265016A859E100A2B400 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		4940265316A85B2A00A2B400 /* alarmclock.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = alarmclock.mp3; sourceTree = "<group>"; };
+		4968C22B16ACD9BB001A039A /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		4991B38B16A01A9900A005AF /* iOSCookBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSCookBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4991B38F16A01A9900A005AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4991B39116A01A9900A005AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -119,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4968C22C16ACD9BB001A039A /* Twitter.framework in Frameworks */,
 				E0CBEBD616A371AE003A67F5 /* libsqlite3.dylib in Frameworks */,
 				4940265116A859E100A2B400 /* AVFoundation.framework in Frameworks */,
 				4991B39016A01A9900A005AF /* UIKit.framework in Frameworks */,
@@ -163,6 +166,7 @@
 		4991B38E16A01A9900A005AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4968C22B16ACD9BB001A039A /* Twitter.framework */,
 				4940265016A859E100A2B400 /* AVFoundation.framework */,
 				4991B38F16A01A9900A005AF /* UIKit.framework */,
 				4991B39116A01A9900A005AF /* Foundation.framework */,
