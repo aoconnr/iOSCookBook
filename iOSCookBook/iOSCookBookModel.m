@@ -20,7 +20,7 @@
     //gets the path for the documents folder on the device
     NSArray *documenPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir = [documenPaths objectAtIndex:0];
-    documentsDir = @"/Users/andrew/Desktop/"; //remove later - currently in for database testing purposes
+    
     self.databasePath = [documentsDir stringByAppendingPathComponent:self.databaseName];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
