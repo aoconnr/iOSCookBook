@@ -60,14 +60,17 @@ int yShiftAfterCategories = 20;
 
 //adds new instruction and updates positions
 - (IBAction)addInstruction{
+  int timerValue = [timerInput.text intValue]*60;
+  NSLog([NSString stringWithFormat:@"%i",timerValue]);
   if ([instrInput.text length] > 0) {
     instrCounter++;
     NSString *newInstruction = [[NSString stringWithFormat:@"%i: ",instrCounter] stringByAppendingString: instrInput.text];
     if([timerInput.text length] > 0){
       newInstruction = [[newInstruction stringByAppendingString:@". Timer:"] stringByAppendingString:timerInput.text];
-        instruction *i = [[instruction alloc] initWithInstruction:instrInput.text order:instrCounter timer:timerInput.text];
-        [instructions addObject:i];
+      
     }
+    instruction *i = [[instruction alloc] initWithInstruction:instrInput.text order:instrCounter timer:timerValue];
+    [instructions addObject:i];
 
     instrList.text = [[instrList.text stringByAppendingString:newInstruction] stringByAppendingString:@"\n"];
     yShiftAfterInstructions += 15;
